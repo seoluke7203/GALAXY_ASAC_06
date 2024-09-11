@@ -1,8 +1,19 @@
-# React + Vite
+# GALAXY Project - ASAC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+추가한 라이브러리들
+- eslint
+- prettier
+- vite-tsconfig-paths
+- react-router            // 라우터(페이지 이동) 위함
+- react-router-dom        // 라우터(페이지 이동) 위함
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+실행방법
+1. 이 repository를 clone한다
+2. `npm i`를 통해 설치를 진행한다
+3. `npm run dev`를 통해 실행한다
+
+- `npm run format`을 통해 eslint를 사용할 수 있다. 아직까지 저장 시 자동 바꿈을 설정하지 못해 해결할 예정이다.
+
+  
