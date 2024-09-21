@@ -6,7 +6,9 @@
 - vite-tsconfig-paths
 - react-router            // 라우터(페이지 이동) 위함
 - react-router-dom        // 라우터(페이지 이동) 위함
-
+- immer
+- Tailwind
+- ShadCN
 
 
 실행방법
