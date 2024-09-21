@@ -1,9 +1,9 @@
-import React from 'react'
+import DateSelectUI from '@/components/TicketingComponents/DateSelect'
 
 export default function TicketingPage() {
   return (
     <div>
-      <h1>Welcome to Ticketing Page!</h1>
+      <DateSelectUI />
     </div>
   )
 }
