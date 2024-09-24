@@ -1,9 +1,10 @@
 import React from 'react'
+import InfoMain from '../../components/ui/performaceInfo/infoMain'
 
 export default function TicketingPage() {
   return (
     <div>
-      <h1>Welcome to Ticketing Page!</h1>
+      <InfoMain/>
     </div>
   )
 }
