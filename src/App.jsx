@@ -19,6 +19,7 @@ import Router from './Router'
 import LandingPage from '@/Pages/Landing/LandingPage'
 import Layout from '@/components/Layout/Layout'
 import TicketingPage from '@/Pages/Ticketing/TicketingPage'
+import LoginPage from '@/Pages/Login/LoginPage'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
+    element: <LoginPage/>,
+  },
+  {
+    path: '/ticketing',
     element: <TicketingPage />,
   },
 ])
