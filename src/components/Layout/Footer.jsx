@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <div className='flex flex-col justify-center items-center text-stone-800 gap-10 pb-12'>
-      <div className='flex flex-row items-center w-full border-t border-b border-t-gray-200 border-b-gray-100'>
-        <ul className='flex flex-row items-center h-10 gap-10 mx-auto'>
+    <div className='flex flex-col justify-center w-full min-w-[1152px] text-stone-800 gap-10 pb-12'>
+      <div className='flex flex-row items-center px-8 border-t border-b border-t-gray-200 border-b-gray-100 h-12'>
+        <ul className='flex flex-row max-w-7xl justify-between flex-grow items-center h-10 gap-5 mx-auto text-[13px]'>
           <li>회사 소개</li>
           <li>이용 약관</li>
           <li>개인정보 처리 방침</li>
@@ -15,7 +15,7 @@ const Footer = () => {
           <li>Language</li>
         </ul>
       </div>
-      <div className='flex px-8 gap-24 mx-auto text-xs/5'>
+      <div className='flex flex-row w-full max-w-[1340px] box-border px-8 gap-24 mx-auto text-xs/5'>
         <div>
           <h2 className='font-[700] text-base'>(주)인터파크트리플</h2>
           <p>주소 서울 서초구 강남대로 447 남서울빌딩 6층</p>
