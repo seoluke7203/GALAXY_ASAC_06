@@ -1,25 +1,31 @@
 import React from 'react'
 import InfoMain from '../../components/ui/performaceInfo/infoMain'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
 import useEventInfo from '../../custom/useEventInfo'
-
+import DateSelectUI from '@/components/TicketingComponents/DateSelect'
 
 export default function TicketingPage() {
-  const posterInfo = useEventInfo();
+  const posterInfo = useEventInfo()
   return (
-    <div>
-      <InfoMain/>
-      <Tabs defaultValue="performaceInfo" className='bg-white'>
-        <TabsList>
-          <TabsTrigger value="performaceInfo" >공연정보</TabsTrigger>
-          <TabsTrigger value="review">관람후기</TabsTrigger>
-          <TabsTrigger value="qna">Q&A</TabsTrigger>
+    <div className='w-full flex flex-row items-center justify-center'>
+    <div className='w-2/3'>
+      <InfoMain />
+      <Tabs defaultValue='performaceInfo' >
+        <TabsList className=''>
+          <TabsTrigger value='performaceInfo'>공연정보</TabsTrigger>
+          <TabsTrigger value='review'>관람후기</TabsTrigger>
+          <TabsTrigger value='qna'>Q&A</TabsTrigger>
         </TabsList>
-        <TabsContent value="performaceInfo"> <PosterInfo src={posterInfo}/> </TabsContent>
-        <TabsContent value="review"> 관람후기 게시판 </TabsContent>
-        <TabsContent value="qna"> qna </TabsContent>
+        <TabsContent value='performaceInfo'>
+          <PosterInfo src='./src/assets/jesusMainPic.jpg' />
+        </TabsContent>
+        <TabsContent value='review'> 관람후기 게시판 </TabsContent>
+        <TabsContent value='qna'> qna </TabsContent>
       </Tabs>
-
+    </div>
+    <div>
+      <DateSelectUI/>
+    </div>
     </div>
   )
 }

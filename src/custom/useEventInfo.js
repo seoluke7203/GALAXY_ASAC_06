@@ -1,12 +1,9 @@
-import posterPicture from '../galaxyImage.jpeg'
-import posterINFO from '../jesusMainPic.jpg'
-
+import posterPicture from '../assets/galaxyImage.jpeg'
 
 const useEventInfo = () => {
   const eventTitle = '2024 뮤지컬 <지저스 크라이스트 슈퍼스타>'
   const eventRank = '뮤지컬 주간 17위'
   const posterSrc = posterPicture
-  const posterInfo = posterINFO
 
   const eventDetails = [
     { label: '장소', value: '광림아트센터 BBCH홀' },

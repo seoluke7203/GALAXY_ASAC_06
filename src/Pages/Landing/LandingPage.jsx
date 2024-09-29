@@ -1,11 +1,14 @@
-import React from 'react'
-import { Button } from '@/components/ui/button'
+import { useLocation } from 'react-router'
 
 export default function LandingPage() {
+  const location = useLocation()
+  const { genre } = location.state || { genre: '뮤지컬' }
+
   return (
-    <div>
-      <h1 className='text-3xl font-bold underline'>Welcome to Landing Page!</h1>
-      <Button>Here</Button>
+    <div className='flex flex-col items-center min-h-[1000px]'>
+      <div className='flex flex-row items-center'>
+        <h1 className='text-3xl font-bold underline'>Welcome to {genre} Landing Page!</h1>
+      </div>
     </div>
   )
 }
