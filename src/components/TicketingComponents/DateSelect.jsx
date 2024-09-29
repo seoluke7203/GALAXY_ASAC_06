@@ -1,6 +1,6 @@
 import { Calendar } from '@/components/ui/calendar'
 import React, { useState } from 'react'
-import TicketNumberUI from './TicketNumberUI'
+import TicketNumberUI from '@/components/TicketingComponents/TicketNumberUI'
 
 const DateSelectUI = () => {
   const [selectedDate, setSelectedDate] = useState(null)

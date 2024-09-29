@@ -28,9 +28,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  min-width: 100wh;
   min-height: 100vh;
 }
 
@@ -135,4 +133,18 @@ button:focus-visible {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.login-page {
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+}
+
+.seat-select-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+  min-width: 80vw;
 }
