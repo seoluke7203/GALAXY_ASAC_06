@@ -1,60 +1,46 @@
 import useEventInfo from "@/custom/useEventInfo"; 
 
 const infoMain = () => {
-    const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo, benefits } = useEventInfo();
+    const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo } = useEventInfo();
 
     return (
-    <div className="event-container">
-      <h2>{eventTitle}</h2>
-      <h3>{eventRank}</h3>
-
-      <div className="event-content">
+    <div className="container mx-auto px-4">
+      <h2 className="text-2xl font-bold text-left">{eventTitle}</h2>
+      <h3 className="text-gray-500 text-left">{eventRank}</h3>
+      <div className="flex mt-8 space-x-8">
         <Poster src={posterSrc} />
-        <EventDetails details={eventDetails} ticketInfo={ticketInfo} benefits={benefits} />
+        <EventDetails details={eventDetails} ticketInfo={ticketInfo}/>
       </div>
     </div>
   );
-  
 };
 
 const Poster = ({ src }) => (
     <div className="poster">
-      <img src={src} alt="뮤지컬 포스터" className="poster-img" />
+      <img src={src} alt="뮤지컬 포스터" className="w-full h-auto rounded-md shadow-lg"/>
     </div>
 );
 
-const EventDetails = ({ details, ticketInfo, benefits }) => (
+const EventDetails = ({ details, ticketInfo}) => (
     <div className="info">
       <table>
-        <tbody>
           {details.map((detail, index) => (
             <tr key={index}>
-              <td>{detail.label}</td>
-              <td>{detail.value}</td>
+              <td className="py-2 font-semibold text-left p-6">{detail.label}</td>
+              <td className="py-2 text-left">{detail.value}</td>
             </tr>
           ))}
           <tr>
-            <td>가격</td>
+            <td className="py-2 font-semibold text-left p-6">가격</td>
             <td>
-              <ul>
+              <ul className="py-2 text-left">
                 {ticketInfo.map((ticket, index) => (
                   <li key={index}>{ticket}</li>
                 ))}
               </ul>
             </td>
           </tr>
-          <tr>
-            <td>혜택</td>
-            <td>{benefits}</td>
-          </tr>
-        </tbody>
-      </table>
-  
-      <div className="event-links">
-        <span>티켓캐스트 1261</span>
-        <span>혜택 정보</span>
-        {/* 필요한 경우 링크 및 아이콘 추가 가능 */}
-      </div>
+      </table> 
     </div>
   );
   

@@ -3,7 +3,7 @@ import posterPicture from '../galaxyImage.jpeg';
 const useEventInfo = () => {
     const eventTitle = "2024 뮤지컬 <지저스 크라이스트 슈퍼스타>";
     const eventRank = "뮤지컬 주간 17위";
-    const posterSrc = posterPicture; 
+    const posterSrc = posterPicture;
   
     const eventDetails = [
       { label: "장소", value: "광림아트센터 BBCH홀" },
@@ -11,7 +11,7 @@ const useEventInfo = () => {
       { label: "공연시간", value: "135분 (인터미션 20분 포함)" },
       { label: "관람연령", value: "미취학아동입장불가" }
     ];
-  
+
     const ticketInfo = [
       "VIP석 150,000원",
       "R석 120,000원",
@@ -19,7 +19,7 @@ const useEventInfo = () => {
       "A석 60,000원"
     ];
   
-    const benefits = "무이자할부";
+    
   
     return {
       eventTitle,
@@ -27,7 +27,6 @@ const useEventInfo = () => {
       posterSrc,
       eventDetails,
       ticketInfo,
-      benefits
     };
   };
   
