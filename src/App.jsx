@@ -1,12 +1,11 @@
-
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import LandingPage from '@/Pages/Landing/LandingPage'
 import Layout from '@/components/Layout/Layout'
 import TicketingPage from '@/Pages/Ticketing/TicketingPage'
 import LoginPage from '@/Pages/Login/LoginPage'
-import SeatSelete from '@/components/TicketingComponents/SeatSelect'
+import SeatSelect from '@/components/TicketingComponents/SeatSelect'
+import RegisterPage from '@/Pages/Register/RegisterPage'
 
 const router = createBrowserRouter([
   {
@@ -21,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <LoginPage/>,
+    element: <LoginPage />,
   },
   {
     path: '/ticketing',
@@ -29,8 +28,12 @@ const router = createBrowserRouter([
   },
   {
     path: '/seatselect',
-    element: <SeatSelete />,
-  }
+    element: <SeatSelect />,
+  },
+  {
+    path: '/Register',
+    element: <RegisterPage />,
+  },
 ])
 
 function App() {

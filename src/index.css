@@ -148,3 +148,10 @@ button:focus-visible {
   margin-top: 20vh;
   min-width: 80vw;
 }
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+}
