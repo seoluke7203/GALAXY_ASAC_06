@@ -73,7 +73,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className='w-96'>
+    <div className='login-page w-96'>
       <img src='../src/assets/galaxy_image.jpg' alt='logo' className='w-full' />
 
       <UsernameInput validation={validation.id} />

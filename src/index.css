@@ -67,3 +67,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+.login-page {
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+}
+
+.seat-select-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+  min-width: 80vw;
+}
