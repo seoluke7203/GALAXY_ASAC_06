@@ -1,8 +1,12 @@
+import LogoZone from '@/components/Layout/LogoZone'
 import { Checkbox } from '@/components/ui/checkbox'
 
 export default function RegisterPage() {
   return (
     <div className='register-page flex flex-col'>
+      <div className='flex flex-col items-left w-full min-w-[1152px] border-b border-solid p-5'>
+        <LogoZone />
+      </div>
       <h1 className='text-3xl font-bold text-center m-16'>회원가입</h1>
       <form className='w-full max-w-lg mx-auto'>
         <div className='id-input flex'>
