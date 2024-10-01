@@ -36,22 +36,6 @@ const mainBannerContents = [
     link: '/ticketing',
     src: '../src/assets/concertTestImg.gif',
   },
-  {
-    id: 4,
-    title: 'TEST4',
-    genre: '뮤지컬',
-    content: '내용4',
-    link: '/ticketing',
-    src: '../src/assets/concertTestImg.gif',
-  },
-  {
-    id: 5,
-    title: 'TEST5',
-    genre: '뮤지컬',
-    content: '내용5',
-    link: '/ticketing',
-    src: '../src/assets/musicalTestImg.gif',
-  },
 ]
 
 const subBannerContents = [
@@ -88,25 +72,32 @@ const subBannerContents = [
     link: '/ticketing',
     src: '../src/assets/concertTestImg.gif',
   },
-  {
-    id: 5,
-    title: 'TEST5',
-    genre: '뮤지컬',
-    content: '내용5',
-    link: '/ticketing',
-    src: '../src/assets/musicalTestImg.gif',
-  },
-  {
-    id: 6,
-    title: 'TEST6',
-    genre: '뮤지컬',
-    content: '내용6',
-    link: '/ticketing',
-    src: '../src/assets/concertTestImg.gif',
-  },
 ]
 
+const Dummy = ({ type, neededAmount }) => {
+  const bannerType = { main: 'basis-1/4', sub: 'basis-1/6' }
+
+  const dummyItems = []
+
+  for (let i = 0; i < neededAmount; i++) {
+    dummyItems.push(
+      <CarouselItem className={bannerType[type]}>
+        <img
+          src='../src/assets/testImg.png'
+          alt='dummy'
+          className='w-full rounded-xl border  border-black border-opacity-10'
+        />
+        <p className='text-base font-bold pt-5'>데이터 준비중 입니다.</p>
+      </CarouselItem>,
+    )
+  }
+
+  return <>{dummyItems}</>
+}
+
 const MainBanner = ({ mainBannerData }) => {
+  const amoutNeedDummy = Math.max(0, 4 - mainBannerData.length)
+
   return (
     <div className='flex flex-row justify-center items-center mt-10'>
       <Carousel
@@ -121,7 +112,7 @@ const MainBanner = ({ mainBannerData }) => {
         ]}
         className='max-w-7xl h-full box-border'
       >
-        <CarouselContent className='w-full'>
+        <CarouselContent className='w-full text-center'>
           {mainBannerData
             // .filter((content) => genre.genre === content.genre)
             .map((content) => (
@@ -140,6 +131,7 @@ const MainBanner = ({ mainBannerData }) => {
                 </Link>
               </CarouselItem>
             ))}
+          <Dummy type='main' neededAmount={amoutNeedDummy} />
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
@@ -149,6 +141,8 @@ const MainBanner = ({ mainBannerData }) => {
 }
 
 const SubBanner = ({ subBannerData }) => {
+  const amoutNeedDummy = Math.max(0, 6 - subBannerData.length)
+
   return (
     <div className='flex flex-col pt-28 items-center'>
       <h2 className='text-3xl font-bold underline'>SubBanner</h2>
@@ -159,7 +153,7 @@ const SubBanner = ({ subBannerData }) => {
           }}
           className='max-w-7xl h-full box-border'
         >
-          <CarouselContent className='w-full'>
+          <CarouselContent className='w-full text-center'>
             {subBannerData
               // .filter((content) => genre.genre === content.genre)
               .map((content) => (
@@ -170,7 +164,7 @@ const SubBanner = ({ subBannerData }) => {
                       alt='testImg'
                       className='rounded-xl border  border-black border-opacity-10'
                     />
-                    <ul className='pt-4 px-1 text-base font-bold'>
+                    <ul className='pt-4 px-1 text-left text-base font-bold'>
                       <li className='text-fuchsia-600'>10.02(수) 11:00</li>
                       <li className='overflow-hidden text-ellipsis mt-1'>{content.title}</li>
                       <li className='mt-1 text-xs text-gray-400 font-thin'>
@@ -180,6 +174,7 @@ const SubBanner = ({ subBannerData }) => {
                   </Link>
                 </CarouselItem>
               ))}
+            <Dummy type='sub' neededAmount={amoutNeedDummy} />
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
