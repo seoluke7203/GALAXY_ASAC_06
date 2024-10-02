@@ -25,7 +25,7 @@ export default function TicketNumberSelector({ category, price, onCountChange })
           <div className='text-xs'>{category}</div>
           <div className='text-md'>{price}</div>
         </div>
-        <div className='flex gap-4 mt-3 ml-6 text'>
+        <div className='flex gap-4 mt-3 mx-6'>
           <div>
             <ChevronLeftCircleIcon onClick={decrementCount} />
           </div>

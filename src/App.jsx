@@ -6,6 +6,7 @@ import TicketingPage from '@/Pages/Ticketing/TicketingPage'
 import LoginPage from '@/Pages/Login/LoginPage'
 import SeatSelect from '@/components/TicketingComponents/SeatSelect'
 import RegisterPage from '@/Pages/Register/RegisterPage'
+import Header from '@/components/Layout/Header'
 
 const router = createBrowserRouter([
   {
