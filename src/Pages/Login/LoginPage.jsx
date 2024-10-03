@@ -75,10 +75,10 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className='login-page flex flex-col w-96'>
-        <div className='flex flex-col items-left w-full min-w-[1152px] border-b border-solid p-5 mb-10'>
-          <LogoZone />
-        </div>
+      <div className='flex flex-col items-left w-full min-w-[1152px] border-b border-solid p-5 mb-10'>
+        <LogoZone />
+      </div>
+      <div className='login-page flex flex-col w-96 m-auto'>
         <img src='../src/assets/galaxy_image.jpg' alt='logo' className='w-full' />
 
         <UsernameInput validation={validation.id} />
@@ -93,7 +93,7 @@ export default function LoginPage() {
           <a href='#'>아이디 찾기</a>
         </div>
 
-        <div className='mt-10 flex text-center gap-10 justify-center'>
+        <div className='mt-10 flex text-center gap-10 justify-center pb-10'>
           <a href='#'>
             <img src='../src/assets/btnW_icon_circle.png' alt='naver_login' className='w-20' />
           </a>

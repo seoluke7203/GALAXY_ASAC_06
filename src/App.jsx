@@ -17,15 +17,15 @@ const router = createBrowserRouter([
         index: true,
         element: <LandingPage />,
       },
+      {
+        path: '/ticketing',
+        element: <TicketingPage />,
+      },
     ],
   },
   {
     path: '/login',
     element: <LoginPage />,
-  },
-  {
-    path: '/ticketing',
-    element: <TicketingPage />,
   },
   {
     path: '/seatselect',
