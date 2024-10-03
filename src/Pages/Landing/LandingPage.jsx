@@ -99,7 +99,7 @@ const MainBanner = ({ mainBannerData }) => {
   const amoutNeedDummy = Math.max(0, 4 - mainBannerData.length)
 
   return (
-    <div className='flex flex-row justify-center items-center mt-10'>
+    <div className='flex flex-row justify-center items-center'>
       <Carousel
         opts={{
           align: 'start',
@@ -110,7 +110,7 @@ const MainBanner = ({ mainBannerData }) => {
             delay: 3000,
           }),
         ]}
-        className='max-w-7xl h-full box-border'
+        className='h-full box-border'
       >
         <CarouselContent className='w-full text-center'>
           {mainBannerData
@@ -197,10 +197,12 @@ export default function LandingPage() {
   // setSubBanner
 
   return (
-    <div className='flex flex-col items-center mb-24 px-[50px] min-h-[1000px] min-w-[1152px]'>
-      <MainBanner mainBannerData={mainBannerData} />
-      <SubBanner subBannerData={subBannerData} />
-      {/* <EventBanner/> */}
+    <div className='main'>
+      <div className='content'>
+        <MainBanner mainBannerData={mainBannerData} />
+        <SubBanner subBannerData={subBannerData} />
+        {/* <EventBanner/> */}
+      </div>
     </div>
   )
 }
