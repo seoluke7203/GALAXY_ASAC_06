@@ -3,10 +3,12 @@ import InfoMain from '../../components/ui/performaceInfo/infoMain'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
 import useEventInfo from '../../custom/useEventInfo'
 import DateSelectUI from '@/components/TicketingComponents/DateSelect'
+import PaymentPage from '@/components/paymentComponents/paymentPage'
 
 export default function TicketingPage() {
   const posterInfo = useEventInfo()
   return (
+    <>
     <div className='w-full flex flex-row items-center justify-center'>
     <div className='w-2/3'>
       <InfoMain />
@@ -27,6 +29,8 @@ export default function TicketingPage() {
       <DateSelectUI/>
     </div>
     </div>
+
+    </>
   )
 }
 
