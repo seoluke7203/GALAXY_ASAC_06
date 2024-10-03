@@ -6,11 +6,10 @@ import DateSelectUI from '@/components/TicketingComponents/DateSelect'
 import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
 
-
 export default function TicketingPage() {
   const posterInfo = useEventInfo()
   return (
-    <div className='w-full flex flex-row items-start my-16'>
+    <div className='w-full flex flex-row items-start my-10'>
       <div className='min-w-[750px] w-2/3 mx-5 '>
         <InfoMain />
         <Tabs defaultValue='performaceInfo'>
@@ -26,7 +25,7 @@ export default function TicketingPage() {
           <TabsContent value='qna'> qna </TabsContent>
         </Tabs>
       </div>
-      <div className='mx-10 sticky top-48 '>
+      <div className='mt-10 mx-10 sticky top-48 '>
         <DateSelectUI />
       </div>
     </div>
