@@ -1,6 +1,7 @@
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useRef, useState } from 'react'
+import LogoZone from '@/components/Layout/LogoZone'
 
 function PasswordInput({ validation: { ref, validate } }) {
   const [valid, setValid] = useState({
@@ -19,7 +20,7 @@ function PasswordInput({ validation: { ref, validate } }) {
   }
   return (
     <>
-      <div className='flex'>
+      <div className='flex w-full'>
         <Input
           ref={ref}
           type='password'
@@ -41,7 +42,7 @@ function PasswordInput({ validation: { ref, validate } }) {
 
 function UsernameInput({ validation: { ref, validate } }) {
   return (
-    <div>
+    <div className='w-full'>
       <Input placeholder='아이디' />
     </div>
   )
@@ -73,32 +74,37 @@ export default function LoginPage() {
   }
 
   return (
-    <div className='login-page w-96'>
-      <img src='../src/assets/galaxy_image.jpg' alt='logo' className='w-full' />
+    <>
+      <div className='login-page flex flex-col w-96'>
+        <div className='flex flex-col items-left w-full min-w-[1152px] border-b border-solid p-5 mb-10'>
+          <LogoZone />
+        </div>
+        <img src='../src/assets/galaxy_image.jpg' alt='logo' className='w-full' />
 
-      <UsernameInput validation={validation.id} />
-      <PasswordInput validation={validation.password} />
-      <Button className='mt-3 w-full' onClick={login}>
-        로그인
-      </Button>
+        <UsernameInput validation={validation.id} />
+        <PasswordInput validation={validation.password} />
+        <Button className='mt-3 w-full' onClick={login}>
+          로그인
+        </Button>
 
-      <div className='mt-3 text-center'>
-        <a href='#'>회원가입 | </a>
-        <a href='#'>비밀번호 찾기 | </a>
-        <a href='#'>아이디 찾기</a>
+        <div className='mt-3 text-center'>
+          <a href='#'>회원가입 | </a>
+          <a href='#'>비밀번호 찾기 | </a>
+          <a href='#'>아이디 찾기</a>
+        </div>
+
+        <div className='mt-10 flex text-center gap-10 justify-center'>
+          <a href='#'>
+            <img src='../src/assets/btnW_icon_circle.png' alt='naver_login' className='w-20' />
+          </a>
+          <a href='#'>
+            <img src='../src/assets/Kakao.png' alt='naver_login' className='w-20' />
+          </a>
+          <a href='#'>
+            <img src='../src/assets/Google.png' alt='naver_login' className='w-20' />
+          </a>
+        </div>
       </div>
-
-      <div className='mt-10 flex text-center gap-10 justify-center'>
-        <a href='#'>
-          <img src='../src/assets/btnW_icon_circle.png' alt='naver_login' className='w-20' />
-        </a>
-        <a href='#'>
-          <img src='../src/assets/Kakao.png' alt='naver_login' className='w-20' />
-        </a>
-        <a href='#'>
-          <img src='../src/assets/Google.png' alt='naver_login' className='w-20' />
-        </a>
-      </div>
-    </div>
+    </>
   )
 }

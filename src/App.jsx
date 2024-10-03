@@ -1,12 +1,13 @@
-
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import LandingPage from '@/Pages/Landing/LandingPage'
 import Layout from '@/components/Layout/Layout'
 import TicketingPage from '@/Pages/Ticketing/TicketingPage'
 import LoginPage from '@/Pages/Login/LoginPage'
-import SeatSelete from '@/components/TicketingComponents/SeatSelect'
+import SeatSelect from '@/components/TicketingComponents/SeatSelect'
+import RegisterPage from '@/Pages/Register/RegisterPage'
+import Header from '@/components/Layout/Header'
+import PaymentInfo from '@/components/paymentComponents/paymentInfo'
 
 const router = createBrowserRouter([
   {
@@ -29,8 +30,17 @@ const router = createBrowserRouter([
   },
   {
     path: '/seatselect',
-    element: <SeatSelete />,
-  }
+    element: <SeatSelect />,
+  },
+  {
+    path: '/Register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/payment',
+    element: <PaymentInfo />,
+  },
+
 ])
 
 function App() {

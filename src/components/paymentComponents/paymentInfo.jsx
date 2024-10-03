@@ -2,12 +2,11 @@ import usePaymentInfo from "@/custom/usePaymentInfo"
 import DiscountTab from "@/components/paymentComponents/discountTabs"
 
 
-
-const paymentPage = () => {
+const paymentInfo = () => {
     const { eventRank, posterSrc, eventDetails } = usePaymentInfo()
   
     return (
-        <div className='container mx-auto px-4 w-2/3'>
+        <div className='container mx-auto px-4'>
           <h2 className='text-2xl font-bold text-left mb-4'>결제하기</h2>
           <hr className="mb-4 border-t-2 border-black" />
         <h3 className='text-gray-500 text-left'>{eventRank}</h3>
@@ -45,4 +44,4 @@ const Poster = ({ src }) => (
   
 
 
-export default paymentPage;
+export default paymentInfo;
