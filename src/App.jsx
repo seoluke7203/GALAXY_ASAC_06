@@ -8,6 +8,7 @@ import SeatSelect from '@/components/TicketingComponents/SeatSelect'
 import RegisterPage from '@/Pages/Register/RegisterPage'
 import Header from '@/components/Layout/Header'
 import PaymentInfo from '@/components/paymentComponents/paymentInfo'
+import PaymentCompeletedPage from '@/Pages/payment/PaymentCompleted'
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,10 @@ const router = createBrowserRouter([
     path: '/payment',
     element: <PaymentInfo />,
   },
-
+  {
+    path: '/paymentCompleted',
+    element: <PaymentCompeletedPage />,
+  },
 ])
 
 function App() {
