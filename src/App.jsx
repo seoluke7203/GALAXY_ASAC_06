@@ -7,6 +7,7 @@ import LoginPage from '@/Pages/Login/LoginPage'
 import SeatSelect from '@/components/TicketingComponents/SeatSelect'
 import RegisterPage from '@/Pages/Register/RegisterPage'
 import Header from '@/components/Layout/Header'
+import PaymentInfo from '@/components/paymentComponents/paymentInfo'
 
 const router = createBrowserRouter([
   {
@@ -17,15 +18,15 @@ const router = createBrowserRouter([
         index: true,
         element: <LandingPage />,
       },
+      {
+        path: '/ticketing',
+        element: <TicketingPage />,
+      },
     ],
   },
   {
     path: '/login',
     element: <LoginPage />,
-  },
-  {
-    path: '/ticketing',
-    element: <TicketingPage />,
   },
   {
     path: '/seatselect',
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
     path: '/Register',
     element: <RegisterPage />,
   },
+  {
+    path: '/payment',
+    element: <PaymentInfo />,
+  },
+
 ])
 
 function App() {

@@ -9,10 +9,9 @@ import Footer from '@/components/Layout/Footer'
 export default function TicketingPage() {
   const posterInfo = useEventInfo()
   return (
-    <>
-      <Header />
-      <div className='w-full flex flex-row items-start justify-center mt-10'>
-        <div className='w-2/3'>
+    <div className='main'>
+      <div className='content flex flex-row items-start'>
+        <div className='min-w-[750px] w-2/3 mx-5 '>
           <InfoMain />
           <Tabs defaultValue='performaceInfo'>
             <TabsList className=''>
@@ -27,12 +26,11 @@ export default function TicketingPage() {
             <TabsContent value='qna'> qna </TabsContent>
           </Tabs>
         </div>
-        <div className='mt-10 ml-20 sticky top-48'>
+        <div className='mx-10 sticky top-48 '>
           <DateSelectUI />
         </div>
       </div>
-      <Footer />
-    </>
+    </div>
   )
 }
 
