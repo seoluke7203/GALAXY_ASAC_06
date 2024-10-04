@@ -1,3 +1,4 @@
+import EventComponent from '@/components/Layout/EventBanner'
 import {
   Carousel,
   CarouselContent,
@@ -201,7 +202,7 @@ export default function LandingPage() {
       <div className='content'>
         <MainBanner mainBannerData={mainBannerData} />
         <SubBanner subBannerData={subBannerData} />
-        {/* <EventBanner/> */}
+        <EventComponent />
       </div>
     </div>
   )
