@@ -1,5 +1,6 @@
 import TicketNumberSelector from '@/components/TicketingComponents/TicketNumberSelector'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const TicketNumberUI = () => {
   const ADULT_PRICE = 130000
@@ -13,6 +14,8 @@ const TicketNumberUI = () => {
     youth: 0,
     infant: 0,
   })
+
+  const navigate = useNavigate()
 
   const handleCountChange = (category, newCount) => {
     setCountUpdate((prev) => ({
@@ -29,9 +32,14 @@ const TicketNumberUI = () => {
       countUpdate.infant * INFANT_PRICE
 
     // 클릭 시 결제 페이지로 이동
-    console.log('Pass Total Price:', Total)
 
     return Total
+  }
+
+  const handleNavigatetoPayment = () => {
+    const Total = TotalPrice()
+
+    navigate('/payment', { state: { Total, countUpdate } })
   }
 
   return (
@@ -65,7 +73,7 @@ const TicketNumberUI = () => {
         <h4 className='font-semibold'>합계: {TotalPrice()}원</h4>
       </div>
       <div className='submit-button'>
-        <button onClick={TotalPrice} className='bg-purple-200 w-full'>
+        <button onClick={handleNavigatetoPayment} className='bg-purple-200 w-full'>
           <h4 className='font-semibold'>확인</h4>
         </button>
       </div>
