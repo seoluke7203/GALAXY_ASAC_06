@@ -2,7 +2,7 @@ import TicketNumberSelector from '@/components/TicketingComponents/TicketNumberS
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const TicketNumberUI = () => {
+const TicketNumberUI = ({ productData, selectedDate, selectedTime }) => {
   const ADULT_PRICE = 130000
   const ELDERLY_PRICE = 120000
   const YOUTH_PRICE = 120000
@@ -38,8 +38,14 @@ const TicketNumberUI = () => {
 
   const handleNavigatetoPayment = () => {
     const Total = TotalPrice()
-
-    navigate('/payment', { state: { Total, countUpdate } })
+    const ticketingData = {
+      productData: productData,
+      countUpdate: countUpdate,
+      selectedDate: selectedDate,
+      selectedTime: selectedTime,
+      totalPrice: Total,
+    }
+    navigate('/payment', { state: { ticketingData } })
   }
 
   return (

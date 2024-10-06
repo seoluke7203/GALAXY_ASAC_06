@@ -1,10 +1,10 @@
 import useEventInfo from '@/custom/useEventInfo'
 
-const infoMain = () => {
+const infoMain = ({ productData }) => {
   const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo } = useEventInfo()
 
   return (
-    <div className='container mx-auto px-4'>
+    <div className='container mx-auto'>
       <h2 className='text-2xl font-bold text-left'>{eventTitle}</h2>
       <h3 className='text-gray-500 text-left'>{eventRank}</h3>
       <div className='flex mt-8 space-x-8'>

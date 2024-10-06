@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/carousel'
 import emblaCarouselAutoplay from 'embla-carousel-autoplay'
 import { useState } from 'react'
-import { useLocation } from 'react-router'
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
 const mainBannerContents = [
@@ -118,7 +118,7 @@ const MainBanner = ({ mainBannerData }) => {
             // .filter((content) => genre.genre === content.genre)
             .map((content) => (
               <CarouselItem key={content.id} className='basis-1/4'>
-                <Link to={`${content.link}/:${content.id}`}>
+                <Link to={`${content.link}/${content.id}`}>
                   <img
                     src={content.src}
                     alt='testImg'
@@ -159,7 +159,7 @@ const SubBanner = ({ subBannerData }) => {
               // .filter((content) => genre.genre === content.genre)
               .map((content) => (
                 <CarouselItem key={content.id} className='basis-1/6'>
-                  <Link className='flex flex-col' to={`${content.link}/:${content.id}`}>
+                  <Link className='flex flex-col' to={`${content.link}/${content.id}`}>
                     <img
                       src={content.src}
                       alt='testImg'
@@ -186,15 +186,44 @@ const SubBanner = ({ subBannerData }) => {
 }
 
 export default function LandingPage() {
-  const location = useLocation()
-  const { genre } = location.state || { genre: '뮤지컬' }
+  const navigate = useNavigate()
+  // const location = useLocation()
+  // const { genre } = location.state || { genre: '뮤지컬' }
+
+  const params = useParams()
+  const genre = params.genre || 'musical'
+
+  const genreList = [
+    {
+      id: 1,
+      genreName: '뮤지컬',
+      link: 'musical',
+    },
+    {
+      id: 2,
+      genreName: '콘서트',
+      link: 'concert',
+    },
+    {
+      id: 3,
+      genreName: '공연',
+      link: 'theater',
+    },
+  ]
+
+  // const check = genreList.findIndex(data => data.link === genre)
+  const check = genreList.find((item) => item.link === genre)
+  if (!check) {
+    navigate('/')
+  }
+
   const [mainBannerData, setMainBannerData] = useState(mainBannerContents) // 더미 데이터 세팅. 추후 변경
   const [subBannerData, setSubBannerData] = useState(subBannerContents) // 더미 데이터 세팅. 추후 변경
 
-  // useEffect -> MainBanner 데이터 호출 (max : 10)
+  // useEffect -> genre -> MainBanner 데이터 호출 (max : 10)
   // setMainBanner
 
-  // useEffect -> SubBanner 데이터 호출 (max : 10)
+  // useEffect -> genre -> SubBanner 데이터 호출 (max : 10)
   // setSubBanner
 
   return (

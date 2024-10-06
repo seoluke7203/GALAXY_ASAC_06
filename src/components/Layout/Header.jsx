@@ -37,17 +37,17 @@ const GenreNavi = () => {
     {
       id: 1,
       genreName: '뮤지컬',
-      link: '/',
+      link: 'musical',
     },
     {
       id: 2,
       genreName: '콘서트',
-      link: '/',
+      link: 'concert',
     },
     {
       id: 3,
       genreName: '공연',
-      link: '/',
+      link: 'theater',
     },
   ]
   return (
@@ -59,9 +59,7 @@ const GenreNavi = () => {
               key={genre.id}
               className='flex items-center h-10 font-bold text-base hover:border-b-2 hover:border-black'
             >
-              <Link to={`${genre.link}`} state={{ genre: genre.genreName }}>
-                {genre.genreName}
-              </Link>
+              <Link to={`/${genre.link}`}>{genre.genreName}</Link>
             </li>
           ))}
         </ul>
@@ -83,7 +81,7 @@ const NaviZone = ({ children }) => {
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false)
-  const [genre, setGenre] = useState('뮤지컬')
+  // const [genre, setGenre] = useState('뮤지컬')
 
   return (
     <div className='flex flex-col items-center w-full min-w-[1152px] border-b border-solid '>
@@ -91,7 +89,7 @@ const Header = () => {
       <NaviZone>
         <LogoZone />
         <SearchZone />
-        <UserNavi isLogin={false} />
+        <UserNavi isLogin={isLogin} />
       </NaviZone>
 
       {/* 장르 영역 */}

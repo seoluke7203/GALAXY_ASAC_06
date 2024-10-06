@@ -1,7 +1,15 @@
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-const PaymentCompleted = ({ total, count }) => {
-  console.log(total)
+const PaymentCompleted = ({ ticketingData }) => {
+  const productData = ticketingData.productData
+  const countUpdate = ticketingData.countUpdate
+  const totalPrice = ticketingData.totalprice
+
+  let count = 0
+  Object.entries(countUpdate).forEach(([key, value]) => {
+    count += value
+  })
+
   return (
     <div className='main'>
       <div className='content'>
@@ -24,15 +32,15 @@ const PaymentCompleted = ({ total, count }) => {
             {Math.floor(Math.random() * 100000000)}
           </div>
 
-          <div className='font-bold pl-10'> 상영일시 </div>
+          <div className='font-bold pl-10'> 공연 일시 </div>
           <div className='text-gray-500'> 10.02(수) 00:00 ~ 00:00</div>
 
           <div className='grid grid-rows-subgrid row-span-5 items-center bg-gray-500 px-5'>
             QR 코드
           </div>
 
-          <div className='font-bold pl-10'> 상영관 </div>
-          <div className='text-gray-500'> 장소 & N관 </div>
+          <div className='font-bold pl-10'> 공연 장소 </div>
+          <div className='text-gray-500'> {productData.place} </div>
 
           <div className='font-bold pl-10'> 관람 인원 </div>
           <div className='text-gray-500'> {count} 명 </div>
@@ -47,7 +55,7 @@ const PaymentCompleted = ({ total, count }) => {
 
         <div className='flex flex-row justify-end border-t-2 mt-10 gap-5 text-xl font-bold pr-5 pt-5'>
           <div>총 결제 금액 </div>
-          <div> {total} 원 </div>
+          <div> {totalPrice} 원 </div>
         </div>
 
         <div className='text-left my-10 text-sm font-bold space-y-1'>
@@ -68,7 +76,7 @@ const PaymentCompleted = ({ total, count }) => {
             <li>적립 예정 포인트는 영화 관람 다음날 적립됩니다.</li>
             <li>예고편 상영 등 사정에 의해 본 영화 시작이 10여분 정도 차이날 수 있습니다.</li>
             <li>
-              개인정보 고호 정책에 따라 주민번호로 예매 치켓을 찾을 수 없습니다. 꼭 에매번호를
+              개인정보 고호 정책에 따라 주민번호로 예매 치켓을 찾을 수 없습니다. 꼭 예매번호를
               확인해 주세요.
             </li>
             <li>
@@ -77,6 +85,17 @@ const PaymentCompleted = ({ total, count }) => {
             </li>
           </ul>
         </div>
+
+        <div className='flex flex-row m-20 justify-center gap-40'>
+          <Link to='/'>
+            <button className='px-10 border-gray-300 bg-white font-black'>마이 페이지</button>
+          </Link>
+          <Link to='/'>
+            <button className='px-10 border-gray-300 bg-rose-500 from-neutral-50 font-black text-white'>
+              홈으로 가기
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   )
@@ -84,7 +103,10 @@ const PaymentCompleted = ({ total, count }) => {
 
 export default function PaymentCompeletedPage() {
   const location = useLocation()
-  const { total } = location.state || { Total: 0 }
-  const { count } = location.state || { count: 0 }
-  return <PaymentCompleted total={total} count={count} />
+  // const { total } = location.state || { Total: 0 }
+  // const { count } = location.state || { count: 0 }
+  const { ticketingData } = location.state
+  console.log(ticketingData)
+
+  return <PaymentCompleted ticketingData={ticketingData} />
 }
