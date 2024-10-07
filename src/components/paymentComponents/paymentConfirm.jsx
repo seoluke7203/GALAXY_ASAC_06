@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 export default function PaymentConfirmUI({ ticketingData }) {
   const navigate = useNavigate()
@@ -75,7 +76,11 @@ export default function PaymentConfirmUI({ ticketingData }) {
         </div>
       </div>
       <div className='flex'>
-        <button className='w-full bg-gray-500 text-white rounded-lg p-3 my-3 mr-2'>취소하기</button>
+        <button className='w-full bg-gray-500 text-white rounded-lg p-3 my-3 mr-2'>
+          <Link to='/' className='text-white'>
+            취소하기
+          </Link>
+        </button>
         <button
           onClick={() => submitHandler()}
           className='submit w-full bg-blue-500 text-white rounded-lg p-3 my-3'

@@ -1,9 +1,28 @@
 import { Link, useLocation } from 'react-router-dom'
+import { QRCodeCanvas } from 'qrcode.react'
+import { useState } from 'react'
 
 const PaymentCompleted = ({ ticketingData }) => {
   const productData = ticketingData.productData
   const countUpdate = ticketingData.countUpdate
-  const totalPrice = ticketingData.totalprice
+  const totalPrice = ticketingData.totalPrice
+
+  const [qrcode, setQrcode] = useState('')
+
+  const downloadQRCode = () => {
+    const canvas = document.getElementById('qrcode')
+    const pngUrl = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+    let downloadLink = document.createElement('a')
+    downloadLink.href = pngUrl
+    downloadLink.download = 'qrcode.png'
+    document.body.appendChild(downloadLink)
+    downloadLink.click()
+    document.body.removeChild(downloadLink)
+  }
+
+  const settingQrcode = () => {
+    setQrcode(`www.naver.com/${qrcode}`)
+  }
 
   let count = 0
   Object.entries(countUpdate).forEach(([key, value]) => {
@@ -11,7 +30,7 @@ const PaymentCompleted = ({ ticketingData }) => {
   })
 
   return (
-    <div className='main'>
+    <div className='main' onLoad={settingQrcode}>
       <div className='content'>
         <div className='flex flex-col justify-center items-center gap-5 m-10'>
           <img
@@ -35,8 +54,15 @@ const PaymentCompleted = ({ ticketingData }) => {
           <div className='font-bold pl-10'> 공연 일시 </div>
           <div className='text-gray-500'> 10.02(수) 00:00 ~ 00:00</div>
 
-          <div className='grid grid-rows-subgrid row-span-5 items-center bg-gray-500 px-5'>
-            QR 코드
+          <div className='grid row-span-5 h-full place-items-top ml-10'>
+            <section className=''>
+              <h1 className='text-primary text-4xl mb-4 font-bold'> QR 코드</h1>
+              <QRCodeCanvas
+                id='qrcode'
+                className='border-primary border-4 rounded-xl p-3'
+                value={qrcode}
+              />
+            </section>
           </div>
 
           <div className='font-bold pl-10'> 공연 장소 </div>
@@ -49,7 +75,10 @@ const PaymentCompleted = ({ ticketingData }) => {
           <div className='text-gray-500'> [X,Y,Z] </div>
 
           <div className='grid grid-rows-subgrid col-span-2 mx-12 mt-12 mb-5'>
-            <button className='bg-gray-300'> QR 다운로드 </button>
+            <button className='bg-gray-300' onClick={downloadQRCode}>
+              {' '}
+              QR 다운로드{' '}
+            </button>
           </div>
         </div>
 
