@@ -19,7 +19,11 @@ const router = createBrowserRouter([
         element: <LandingPage />,
       },
       {
-        path: '/ticketing',
+        path: '/:genre',
+        element: <LandingPage />,
+      },
+      {
+        path: '/ticketing/:productId',
         element: <TicketingPage />,
       },
     ],

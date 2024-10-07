@@ -2,7 +2,7 @@ import { Calendar } from '@/components/ui/calendar'
 import React, { useState } from 'react'
 import TicketNumberUI from '@/components/TicketingComponents/TicketNumberUI'
 
-const DateSelectUI = () => {
+const DateSelectUI = ({ productData }) => {
   const [selectedDate, setSelectedDate] = useState(null)
   const [selectedTime, setSelectedTime] = useState(null)
 
@@ -12,7 +12,7 @@ const DateSelectUI = () => {
   }
 
   return (
-    <div className='calendar-container border p-8 rounded-lg'>
+    <div className='calendar-container border p-8 rounded-lg min-w-[342px]'>
       {selectedTime === null ? (
         <>
           <h2 className='text-black text-center text-2xl font-bold mb-4'>관람일</h2>
@@ -64,7 +64,11 @@ const DateSelectUI = () => {
         </>
       ) : (
         // Render TicketNumberSelector when a time is selected
-        <TicketNumberUI />
+        <TicketNumberUI
+          productData={productData}
+          selectedDate={selectedDate}
+          selectedTime={selectedTime}
+        />
       )}
     </div>
   )
