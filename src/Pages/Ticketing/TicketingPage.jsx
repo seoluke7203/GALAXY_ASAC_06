@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/ta
 import useEventInfo from '../../custom/useEventInfo'
 import DateSelectUI from '@/components/TicketingComponents/DateSelect'
 import { useParams } from 'react-router'
+import NonSelectTicket from '@/components/TicketingComponents/NonSelectTicket'
 
 export default function TicketingPage() {
   const params = useParams()
@@ -14,8 +15,10 @@ export default function TicketingPage() {
     genre: '뮤지컬',
     content: '내용1',
     place: '예술의 전당',
+    type : '0',
     src: '../src/assets/musicalTestImg.gif',
   })
+  const [ticketType, setTicketType] = useState(productData.type)
 
   // useEffect -> param.productId -> InfoMain, 관람 후기 데이터 호출
   // setProductData
@@ -41,7 +44,9 @@ export default function TicketingPage() {
           </Tabs>
         </div>
         <div className='mx-10 sticky top-48'>
-          <DateSelectUI productData={productData} />
+          {ticketType === '0' ? <NonSelectTicket />
+          : <DateSelectUI productData={productData} /> }
+          
         </div>
       </div>
     </div>
