@@ -1,14 +1,30 @@
 import useEventInfo from '@/custom/useEventInfo'
+import { useState } from 'react'
 
 const infoMain = ({ productData }) => {
   const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo } = useEventInfo()
 
+  // console.log(productData)
+
+  // title: '뮤지컬3',
+  //   rank: '3위',
+  //   days: '3333',
+  //   time: '3333',
+  //   age: '3333',
+  //   price: '4444',
+
+  console.log(productData?.details)
+  
+  console.log(eventDetails)
+  
+
+
   return (
     <div className='container mx-auto'>
-      <h2 className='text-2xl font-bold text-left'>{eventTitle}</h2>
-      <h3 className='text-gray-500 text-left'>{eventRank}</h3>
+      <h2 className='text-2xl font-bold text-left'>{productData?.title}</h2>
+      <h3 className='text-gray-500 text-left'>{productData?.rank}</h3>
       <div className='flex mt-8 space-x-8'>
-        <Poster src={posterSrc} />
+        <Poster src={productData?.src} />
         <EventDetails details={eventDetails} ticketInfo={ticketInfo} />
       </div>
     </div>
