@@ -13,11 +13,7 @@ const infoMain = ({ productData }) => {
   //   age: '3333',
   //   price: '4444',
 
-  console.log(productData?.details)
   
-  console.log(eventDetails)
-  
-
 
   return (
     <div className='container mx-auto'>
@@ -39,25 +35,21 @@ const Poster = ({ src }) => (
 
 const EventDetails = ({ details, ticketInfo }) => (
   <div className='info'>
-    <table>
-      {details.map((detail, index) => (
-        <tr key={index}>
-          <td className='py-2 font-semibold text-left p-6'>{detail.label}</td>
-          <td className='py-2 text-left'>{detail.value}</td>
-        </tr>
-      ))}
-      <tr>
-        <td className='py-2 font-semibold text-left p-6'>가격</td>
-        <td>
-          <ul className='py-2 text-left'>
-            {ticketInfo.map((ticket, index) => (
-              <li key={index}>{ticket}</li>
-            ))}
-          </ul>
-        </td>
-      </tr>
-    </table>
+    <p className='py-2 font-semibold text-left p-6'>{"장소"}</p>
+    <p className='py-2 font-semibold text-left p-6'>{"공연기간"}</p>
+    <p className='py-2 font-semibold text-left p-6'>{"공연시간"}</p>
+    <p className='py-2 font-semibold text-left p-6'>{"관람연령"}</p>
+    <p className='py-2 font-semibold text-left p-6'>{"가격"}</p>
   </div>
 )
 
 export default infoMain
+
+
+// { label: '장소', value: '광림아트센터 BBCH홀' },
+//     { label: '공연기간', value: '2024.11.07 ~ 2025.01.12' },
+//     { label: '공연시간', value: '135분 (인터미션 20분 포함)' },
+//     { label: '관람연령', value: '미취학아동입장불가' },
+//   ]
+
+//   const ticketInfo = ['VIP석 150,000원', 'R석 120,000원', 'S석 90,000원', 'A석 60,000원']

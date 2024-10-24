@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import InfoMain from '../../components/performaceInfo/infoMain'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
 import useEventInfo from '../../custom/useEventInfo'
@@ -14,8 +14,9 @@ import posterSrc2 from '../../assets/poster/aladinPoster.png'
    * price // array
    */
 
+
+//async - await fetch()로 데이터 받아오기
 const eventDetails = {
-  1:{
     title: '2024 뮤지컬 <지저스 크라이스트 슈퍼스타>',
     rank: '뮤지컬 주간 1위',
     src: posterSrc1,
@@ -29,30 +30,6 @@ const eventDetails = {
       '11R석 120,000원',
       '11S석 90,000원',
       '11A석 60,000원'],
-  },
-  2:{
-    title: '뮤지컬 알라딘',
-    rank: '뮤지컬 주간 2위',
-    src: posterSrc2,
-    details: [
-    { label: '22장소', value: '광림아트센터 BBCH홀' },
-    { label: '22공연기간', value: '2024.11.07 ~ 2025.01.12' },
-    { label: '22공연시간', value: '135분 (인터미션 20분 포함)' },
-    { label: '관람연령', value: '미취학아동입장불가' }],
-    prices: [
-      'VIP석 150,000원',
-      'R석 120,000원',
-      'S석 90,000원',
-      'A석 60,000원'],
-  },
-  3:{
-    title: '뮤지컬3',
-    rank: '3위',
-    days: '3333',
-    time: '3333',
-    age: '3333',
-    price: '4444',
-  }
 }
 
 
@@ -75,7 +52,7 @@ export default function TicketingPage() {
   const [productData, setProductData] = useState(null)
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setProductData(eventDetails[params.productId])
   }, [params.productId])
 
