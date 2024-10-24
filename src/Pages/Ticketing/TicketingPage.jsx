@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InfoMain from '../../components/ui/performaceInfo/infoMain'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
 import useEventInfo from '../../custom/useEventInfo'
@@ -15,7 +15,7 @@ export default function TicketingPage() {
     genre: '뮤지컬',
     content: '내용1',
     place: '예술의 전당',
-    type : '0',
+    type: '1',
     src: '../src/assets/musicalTestImg.gif',
   })
   const [ticketType, setTicketType] = useState(productData.type)
@@ -24,6 +24,17 @@ export default function TicketingPage() {
   // setProductData
 
   // setReview --pending
+
+  //sample
+  useEffect(() => {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application.json' },
+    }
+    fetch('http://localhost:8080/test', requestOptions)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+  }, [])
 
   return (
     <div className='main'>
@@ -44,9 +55,11 @@ export default function TicketingPage() {
           </Tabs>
         </div>
         <div className='mx-10 sticky top-48'>
-          {ticketType === '0' ? <NonSelectTicket />
-          : <DateSelectUI productData={productData} /> }
-          
+          {ticketType === '0' ? (
+            <NonSelectTicket productData={productData} />
+          ) : (
+            <DateSelectUI productData={productData} />
+          )}
         </div>
       </div>
     </div>

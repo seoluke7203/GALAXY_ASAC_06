@@ -158,7 +158,7 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20vh;
+  margin: 10vh;
   min-width: 80vw;
 }
 

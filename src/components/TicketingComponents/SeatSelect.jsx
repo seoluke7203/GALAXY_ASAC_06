@@ -1,7 +1,22 @@
 import React, { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router'
 
-const SeatSelect = ({ count = 3, title, schedule, location }) => {
+// const SeatSelect = ({ count = 3, title, schedule, location }) => {
+const SeatSelect = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { ticketingData } = location.state
+
   const [selectedSeats, setSelectedSeats] = useState([])
+
+  const productData = ticketingData.productData
+  const countUpdate = ticketingData.countUpdate
+  const schedule = ticketingData.schedule
+
+  let count = 0
+  Object.entries(countUpdate).forEach(([key, value]) => {
+    count += value
+  })
 
   const handleSeatSelect = (seat) => {
     if (selectedSeats.length >= count && !selectedSeats.includes(seat)) {
@@ -23,8 +38,15 @@ const SeatSelect = ({ count = 3, title, schedule, location }) => {
     })
   }
 
+  const submitHandler = () => {
+    // 결제 요청 api 호출
+    ticketingData.selectedSeats = selectedSeats
+
+    navigate('/paymentCompleted', { state: { ticketingData } })
+  }
+
   return (
-    <div>
+    <div className='flex justify-center items-center'>
       <div className='seat-select-page flex'>
         {/* Left side contnet */}
         <div className='flex-2'>
@@ -32,10 +54,10 @@ const SeatSelect = ({ count = 3, title, schedule, location }) => {
             <h1>좌석 선택</h1>
           </div>
           <div>
-            <h2 className='font-bold text-left'>
-              &lt;{title == '' ? title : 'Title Not found'}&gt; :
-              {schedule == '' ? schedule : 'Schedule not found'} -{' '}
-              {location == '' ? location : 'Location not found'}
+            <h2 className='font-bold text-center'>
+              &lt;{productData.title !== '' ? productData.title : 'Title Not found'}&gt; :
+              {schedule !== '' ? schedule : 'Schedule not found'} -{' '}
+              {productData.place !== '' ? productData.place : 'Location not found'}
             </h2>
           </div>
           <div className='p-10 font-bold'>
@@ -101,8 +123,8 @@ const SeatSelect = ({ count = 3, title, schedule, location }) => {
         </div>
         {/* Right side content */}
 
-        <div className='flex flex-1 p-5 flex-col-reverse'>
-          <div className='border border-red-600 w-8/12'>
+        <div className='flex p-5 flex-col-reverse'>
+          <div className='border border-red-600 w-[350px]'>
             <div className='border border-black'>
               <img src='../src/assets/galaxy_image.jpg' alt='placeholder' className='h-56 w-full' />
             </div>
@@ -151,7 +173,12 @@ const SeatSelect = ({ count = 3, title, schedule, location }) => {
               </div>
             </div>
             <div className='p-10'>
-              <button className='w-full bg-blue-500 text-white p-4 rounded-lg'>결제하기</button>
+              <button
+                onClick={submitHandler}
+                className='w-full bg-blue-500 text-white p-4 rounded-lg'
+              >
+                결제하기
+              </button>
             </div>
           </div>
         </div>
