@@ -81,7 +81,9 @@ export default function TicketingPage() {
           </Tabs>
         </div>
         <div className='mx-10 sticky top-48'>
-          <DateSelectUI productData={productData} />
+          {ticketType === '0' ? <NonSelectTicket />
+          : <DateSelectUI productData={productData} /> }
+          
         </div>
       </div>
     </div>
