@@ -21,7 +21,7 @@ const infoMain = ({ productData }) => {
       <h3 className='text-gray-500 text-left'>{productData?.rank}</h3>
       <div className='flex mt-8 space-x-8'>
         <Poster src={productData?.src} />
-        <EventDetails details={eventDetails} ticketInfo={ticketInfo} />
+        <EventDetails />
       </div>
     </div>
   )
@@ -33,7 +33,7 @@ const Poster = ({ src }) => (
   </div>
 )
 
-const EventDetails = ({ details, ticketInfo }) => (
+const EventDetails = () => (
   <div className='info'>
     <p className='py-2 font-semibold text-left p-6'>{"장소"}</p>
     <p className='py-2 font-semibold text-left p-6'>{"공연기간"}</p>
