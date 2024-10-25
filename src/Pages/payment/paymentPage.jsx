@@ -8,6 +8,8 @@ export default function paymentPage() {
   // const { countUpdate } = location.state || { countUpdate: {} }
   const { ticketingData } = location.state
 
+  console.log(location.state)
+
   return (
     <>
       <div className='flex'>

@@ -5,7 +5,7 @@ const paymentInfo = () => {
   const { posterSrc, eventDetails } = usePaymentInfo()
 
   return (
-    <div className='container mx-auto px-4'>
+    <div className='container mx-auto px-4'>  
       <h2 className='text-2xl font-bold text-left mb-4'>결제하기</h2>
       <hr className='mb-4 border-t-2 border-black' />
       <div className='flex mt-8 mb-8 space-x-8 '>

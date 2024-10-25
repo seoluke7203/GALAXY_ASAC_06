@@ -1,4 +1,4 @@
-import posterPicture from '../assets/galaxyImage.jpeg'
+import posterPicture from '../assets/poster/jesuschristPoster.jpeg'
 
 const useEventInfo = () => {
   const eventTitle = '2024 뮤지컬 <지저스 크라이스트 슈퍼스타>'
