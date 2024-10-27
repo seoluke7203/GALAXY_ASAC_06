@@ -18,15 +18,15 @@ const mainBannerContents = [
     genre: '뮤지컬',
     content: '내용1',
     link: '/ticketing',
-    src: '../src/assets/musicalTestImg.gif',
+    src: 'src/assets/poster/stillJypPoster.gif',
   },
   {
     id: 2,
-    title: 'TEST2',
+    title: 'TEST2',   
     genre: '뮤지컬',
     content: '내용2',
     link: '/ticketing',
-    src: '../src/assets/musicalTestImg.gif',
+    src: 'src/assets/poster/aladinPoster.png',
   },
 
   {
@@ -35,7 +35,7 @@ const mainBannerContents = [
     genre: '뮤지컬',
     content: '내용3',
     link: '/ticketing',
-    src: '../src/assets/concertTestImg.gif',
+    src: 'src/assets/poster/musicalTestImg.gif',
   },
 ]
 
