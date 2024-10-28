@@ -42,7 +42,7 @@ const SeatSelect = () => {
     // 결제 요청 api 호출
     ticketingData.selectedSeats = selectedSeats
 
-    navigate('/paymentCompleted', { state: { ticketingData } })
+    navigate('/payment', { state: { ticketingData } })
   }
 
   return (

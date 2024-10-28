@@ -6,27 +6,9 @@ import DateSelectUI from '@/components/TicketingComponents/DateSelect'
 import { useParams } from 'react-router'
 import posterSrc1 from '../../assets/poster/jesuschristPoster.jpeg'
 import posterSrc2 from '../../assets/poster/aladinPoster.png'
-/**
- * title
- * rank
- * src
- * details // array
- * price // array
- */
+import NonSelectTicket from '@/components/TicketingComponents/NonSelectTicket'
 
 //async - await fetch()로 데이터 받아오기
-const eventDetails = {
-  title: '2024 뮤지컬 <지저스 크라이스트 슈퍼스타>',
-  rank: '뮤지컬 주간 1위',
-  src: posterSrc1,
-  details: [
-    { label: '11장소', value: '광림아트센터 BBCH홀' },
-    { label: '11공연기간', value: '2024.11.07 ~ 2025.01.12' },
-    { label: '11공연시간', value: '135분 (인터미션 20분 포함)' },
-    { label: '관람연령', value: '미취학아동입장불가' },
-  ],
-  prices: ['11VIP석 150,000원', '11R석 120,000원', '11S석 90,000원', '11A석 60,000원'],
-}
 
 export default function TicketingPage() {
   // const params = useParams()
@@ -42,7 +24,8 @@ export default function TicketingPage() {
   // ----------------------------------------------------------------
 
   const params = useParams()
-  const posterInfo = useEventInfo()
+  // const posterInfo = useEventInfo()
+
   const [productData, setProductData] = useState({
     product_id: 1,
     title: 'TEST',
