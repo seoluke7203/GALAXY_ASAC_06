@@ -22,7 +22,7 @@ const mainBannerContents = [
   },
   {
     id: 2,
-    title: 'TEST2',   
+    title: 'TEST2',
     genre: '뮤지컬',
     content: '내용2',
     link: '/ticketing',
@@ -231,7 +231,6 @@ export default function LandingPage() {
       <div className='content'>
         <MainBanner mainBannerData={mainBannerData} />
         <SubBanner subBannerData={subBannerData} />
-        <EventComponent />
       </div>
     </div>
   )
