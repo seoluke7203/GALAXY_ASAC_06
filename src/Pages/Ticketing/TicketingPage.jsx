@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import InfoMain from '../../components/performaceInfo/infoMain'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
-import useEventInfo from '../../custom/useEventInfo'
 import DateSelectUI from '@/components/TicketingComponents/DateSelect'
 import { useParams } from 'react-router'
-import posterSrc1 from '../../assets/poster/jesuschristPoster.jpeg'
-import posterSrc2 from '../../assets/poster/aladinPoster.png'
 import NonSelectTicket from '@/components/TicketingComponents/NonSelectTicket'
 
 //async - await fetch()로 데이터 받아오기
@@ -33,7 +30,7 @@ export default function TicketingPage() {
     content: '내용1',
     place: '예술의 전당',
     type: '1',
-    src: '../src/assets/musicalTestImg.gif',
+    src: '../src/assets/images/musicalTestImg.gif',
   })
   const [ticketType, setTicketType] = useState(productData.type)
 

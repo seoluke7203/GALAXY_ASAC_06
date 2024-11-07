@@ -1,4 +1,4 @@
-import posterPicture from '../assets/poster/jesuschristPoster.jpeg'
+import posterPicture from '../assets/images/posters/jesuschristPoster.jpeg'
 
 const usePaymentInfo = () => {
   const eventTitle = '소년시절의 너'
