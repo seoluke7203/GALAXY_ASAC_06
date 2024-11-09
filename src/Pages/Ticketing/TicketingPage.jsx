@@ -22,6 +22,7 @@ export default function TicketingPage() {
 
   const params = useParams()
   // const posterInfo = useEventInfo()
+  
 
   const [productData, setProductData] = useState({
     product_id: 1,
@@ -39,16 +40,20 @@ export default function TicketingPage() {
 
   // setReview --pending
 
-  //sample
+
   useEffect(() => {
     const requestOptions = {
       method: 'GET',
-      headers: { 'Content-Type': 'application.json' },
+      headers: { 'Content-Type' : 'application.json' },
     }
-    fetch('http://localhost:8080/test', requestOptions)
+    fetch(`http://localhost:8080/ticketing/${params.productId}`, requestOptions)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((result) => {
+        setProductData(result.data)
+      }
+    )
   }, [])
+
 
   return (
     <div className='main'>
@@ -62,7 +67,7 @@ export default function TicketingPage() {
               <TabsTrigger value='qna'>Q&A</TabsTrigger>
             </TabsList>
             <TabsContent value='performaceInfo'>
-              <PosterInfo src='../src/assets/jesusMainPic.jpg' />
+              <PosterInfo src={productData.posterDetail} />
             </TabsContent>
             <TabsContent value='review'>관람후기 게시판</TabsContent>
             <TabsContent value='qna'> qna </TabsContent>

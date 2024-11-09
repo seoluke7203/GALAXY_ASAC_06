@@ -10,7 +10,7 @@ import emblaCarouselAutoplay from 'embla-carousel-autoplay'
 import { Link } from 'react-router-dom'
 
 const MainBanner = ({ mainBannerData }) => {
-  const amoutNeedDummy = Math.max(0, 4 - mainBannerData.length)
+  const amountNeedDummy = Math.max(0, 4 - mainBannerData.length)
 
   return (
     <div className='flex flex-row justify-center items-center'>
@@ -31,7 +31,7 @@ const MainBanner = ({ mainBannerData }) => {
             // .filter((content) => genre.genre === content.genre)
             .map((content, index) => (
               <CarouselItem key={index} className='basis-1/4'>
-                <Link to={`/ticketing/${content.id}`}>
+                <Link to={`/ticketing/${content.productId}`}>
                   <img
                     src={content.productSrc}
                     alt='testImg'
@@ -47,7 +47,7 @@ const MainBanner = ({ mainBannerData }) => {
                 </Link>
               </CarouselItem>
             ))}
-          <DummyComponent type='main' neededAmount={amoutNeedDummy} />
+          <DummyComponent type='main' neededAmount={amountNeedDummy} />
         </CarouselContent>
         <CarouselPrevious className='p-0' />
         <CarouselNext className='p-0' />
