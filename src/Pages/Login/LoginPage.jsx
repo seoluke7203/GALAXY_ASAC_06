@@ -88,9 +88,9 @@ export default function LoginPage() {
         </Button>
 
         <div className='mt-3 text-center'>
-          <a href='#'>회원가입 | </a>
-          <a href='#'>비밀번호 찾기 | </a>
-          <a href='#'>아이디 찾기</a>
+          <a href='/register'>회원가입 | </a>
+          <a href='#' onClick={() => alert("준비중입니다")}>비밀번호 찾기 | </a>
+          <a href='#' onClick={() => alert("준비중입니다")}>아이디 찾기</a>
         </div>
 
         <div className='mt-10 flex text-center gap-10 justify-center pb-10'>
