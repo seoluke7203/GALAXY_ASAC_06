@@ -153,8 +153,31 @@ function NameInput({ register, error = undefined }) {
 }
 
 function onClickConfirm(data) {
-  console.log(data)
-  // @TODO: 여기서 BE로 데이터를 보내면 된다
+  // console.log(data)
+  fetch('http://localhost:8080/api/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: data.username,
+      password: data.password,
+      email: data.email,
+      name: data.name,
+    }),
+  })
+  .then(async response => {
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      alert(errorMessage);
+      throw new Error(errorMessage); 
+    } else{
+      window.location.href = '/login';
+      alert("회원가입이 완료되었습니다.");
+      return response.json();
+    }
+  })
+  .catch((error) => console.error("Error - ", error));
 }
 
 export default function RegisterPage() {
