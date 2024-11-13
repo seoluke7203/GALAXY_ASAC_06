@@ -11,7 +11,6 @@ const DateSelectUI = ({ productData }) => {
   }
   const handleTimeSelect = (time) => {
     setSelectedTime(time)
-    console.log('Selected Time:', time)
   }
 
   return (
@@ -27,6 +26,7 @@ const DateSelectUI = ({ productData }) => {
               value={selectedDate}
               onSelect={setSelectedDate}
               showOutsideDays={false}
+              // disabled={(date) => date < new Date() || date > new Date(end_date)}
               classNames={{
                 day: 'text-black bg-white rounded-full p-2',
                 selected: 'bg-purple-600 text-white',
