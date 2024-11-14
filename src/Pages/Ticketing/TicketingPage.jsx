@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import InfoMain from '../../components/performaceInfo/infoMain'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
-import DateSelectUI from '@/components/TicketingComponents/DateSelect'
 import { useParams } from 'react-router'
-import NonSelectTicket from '@/components/TicketingComponents/NonSelectTicket'
+import DateSelectUI from '@/components/TicketingComponents/DateSelectUI'
+import NonDateSelectUI from '@/components/TicketingComponents/NonDateSelectUI'
 
 //async - await fetch()로 데이터 받아오기
 
@@ -22,7 +22,6 @@ export default function TicketingPage() {
 
   const params = useParams()
   // const posterInfo = useEventInfo()
-  
 
   const [productData, setProductData] = useState({
     product_id: 1,
@@ -40,20 +39,17 @@ export default function TicketingPage() {
 
   // setReview --pending
 
-
   useEffect(() => {
     const requestOptions = {
       method: 'GET',
-      headers: { 'Content-Type' : 'application.json' },
+      headers: { 'Content-Type': 'application.json' },
     }
     fetch(`http://localhost:8080/ticketing/${params.productId}`, requestOptions)
       .then((res) => res.json())
       .then((result) => {
         setProductData(result.data)
-      }
-    )
+      })
   }, [])
-
 
   return (
     <div className='main'>
@@ -75,7 +71,7 @@ export default function TicketingPage() {
         </div>
         <div className='mx-10 sticky top-48'>
           {ticketType === '0' ? (
-            <NonSelectTicket productData={productData} />
+            <NonDateSelectUI productData={productData} />
           ) : (
             <DateSelectUI productData={productData} />
           )}
