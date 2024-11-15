@@ -6,7 +6,7 @@ const infoMain = ({ productData }) => {
   
 
   return (
-    <div className='container mx-auto pb-10'>
+    <div className='container mx-auto pb-10 pl-10'>
       <h2 className='text-2xl font-bold text-left'>{productData?.title}</h2>
       <h3 className='text-gray-500 text-left'>{productData?.rank}</h3>
       <div className='flex mt-8 space-x-8'>
@@ -46,10 +46,24 @@ const EventDetails = ({detail}) => (
       <li className='inline-flex pb-3'>
         <strong className='w-24 text-left'>가격</strong>
         <div className='text-left'>
-          <p className='font-semibold'>{`성인 : ${detail.price}원`}</p>
-          <p className='font-semibold'>{`경로 : ${detail.price - (detail.price * 0.1)}원`}</p>
-          <p className='font-semibold'>{`청소년 : ${detail.price - (detail.price * 0.2)}원`}</p>
-          <p className='font-semibold'>{`유야 : ${detail.price - (detail.price * 0.5)}원`}</p>
+          <ul className='inline-grid'>
+            <li className='inline-flex pb-1'>
+              <strong className='w-16'>성인</strong>
+              <p className='font-semibold'>{`${detail.price}원`}</p>
+            </li>
+            <li className='inline-flex pb-1'>
+              <strong className='w-16'>경로</strong>
+              <p className='font-semibold'>{detail.price - (detail.price * 0.1)}원</p>
+            </li>
+            <li className='inline-flex pb-1'>
+              <strong className='w-16'>청소년</strong>
+              <p className='font-semibold'>{detail.price - (detail.price * 0.2)}원</p>
+            </li>
+            <li className='inline-flex pb-1'>
+              <strong className='w-16'>유아</strong>
+              <p className='font-semibold'>{detail.price - (detail.price * 0.5)}원</p>
+            </li>
+          </ul>
         </div>
       </li>
     </ul>

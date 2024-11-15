@@ -12,6 +12,10 @@ const DateSelectUI = ({ productData }) => {
   const handleTimeSelect = (time) => {
     setSelectedTime(time)
   }
+  console.log(productData.startDate)
+  console.log(productData.endDate)
+  console.log("2024-11-20")
+
 
   return (
     <div className='calendar-container border p-8 rounded-lg min-w-[342px]'>
@@ -26,7 +30,9 @@ const DateSelectUI = ({ productData }) => {
               value={selectedDate}
               onSelect={setSelectedDate}
               showOutsideDays={false}
-              // disabled={(date) => date < new Date() || date > new Date(end_date)}
+              // disabled={(date) => date < new Date(productData.startDate) || date > new Date(productData.endDate)}
+              fromDate={new Date(productData.startDate) > new Date() ? new Date(productData.startDate) : new Date()}
+              toDate={new Date(productData.endDate)}
               classNames={{
                 day: 'text-black bg-white rounded-full p-2',
                 selected: 'bg-purple-600 text-white',
