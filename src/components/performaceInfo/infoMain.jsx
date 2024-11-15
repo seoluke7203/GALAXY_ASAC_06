@@ -28,23 +28,23 @@ const EventDetails = ({detail}) => (
   <div className='info pl-10'>
     <ul className='inline-grid'>
       <li className='inline-flex pb-3'>
-        <strong className='w-32'>장소</strong>
+        <strong className='w-24 text-left'>장소</strong>
         <p className='font-semibold'>{`${detail.place}`}</p>
       </li>
       <li className='inline-flex pb-3'>
-        <strong className='w-32'>공연기간</strong>
+        <strong className='w-24 text-left'>공연기간</strong>
         <p className='font-semibold'>{`${detail.startDate} ~ ${detail.endDate}`}</p>
       </li>
       <li className='inline-flex pb-3'>
-        <strong className='w-32'>공연시간</strong>
+        <strong className='w-24 text-left'>공연시간</strong>
         <p className='font-semibold'>{`${detail.runningTime}분`}</p>
       </li>
       <li className='inline-flex pb-3'>
-        <strong className='w-32'>관람연령</strong>
+        <strong className='w-24 text-left'>관람연령</strong>
         <p className='font-semibold'>{`전체연령`}</p>
       </li>
       <li className='inline-flex pb-3'>
-        <strong className='w-32'>가격</strong>
+        <strong className='w-24 text-left'>가격</strong>
         <div className='text-left'>
           <p className='font-semibold'>{`성인 : ${detail.price}원`}</p>
           <p className='font-semibold'>{`경로 : ${detail.price - (detail.price * 0.1)}원`}</p>
