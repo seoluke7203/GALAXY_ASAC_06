@@ -30,8 +30,8 @@ const DateSelectUI = ({ productData }) => {
               value={selectedDate}
               onSelect={setSelectedDate}
               showOutsideDays={false}
-              // disabled={(date) => date < new Date(productData.startDate) || date > new Date(productData.endDate)}
-              fromDate={new Date(productData.startDate) > new Date() ? new Date(productData.startDate) : new Date()}
+              disabled={(date) => date < new Date(productData.startDate) || date > new Date(productData.endDate)}
+              // fromDate={new Date(productData.startDate) > new Date() ? new Date(productData.startDate) : new Date()}
               toDate={new Date(productData.endDate)}
               classNames={{
                 day: 'text-black bg-white rounded-full p-2',

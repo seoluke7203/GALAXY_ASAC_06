@@ -2,10 +2,17 @@ import usePaymentInfo from '@/custom/usePaymentInfo'
 import DiscountTab from '@/components/paymentComponents/discountTabs'
 
 const paymentInfo = () => {
-  const { posterSrc, eventDetails } = usePaymentInfo()
+  const { posterSrc, eventDetails } = usePaymentInfo({
+    title: '다른 공연 제목',
+    date: '2024.10.10(목)',
+    time: '14:00 ~ 16:30',
+    location: '홍대/1관 - 3D',
+    seatInfo: '성인 2, 청소년 1'
+  })
+
 
   return (
-    <div className='container mx-auto px-4'>  
+    <div className='container mx-auto px-4 p-8 pl-12'>  
       <h2 className='text-2xl font-bold text-left mb-4'>결제하기</h2>
       <hr className='mb-4 border-t-2 border-black' />
       <div className='flex mt-8 mb-8 space-x-8 '>
