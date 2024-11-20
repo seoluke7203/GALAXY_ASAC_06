@@ -2,76 +2,85 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useRef, useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
+import { useForm } from 'react-hook-form'
+import clsx from 'clsx'
 
-function PasswordInput({ validation: { ref, validate } }) {
-  const [valid, setValid] = useState({
-    minimum: true,
-    required: true,
-  })
 
-  function changeMode(e) {
-    if (ref.current.type === 'password') {
-      ref.current.type = 'text'
-      e.currentTarget.innerText = '🔓'
-    } else if (ref.current.type === 'text') {
-      ref.current.type = 'password'
-      e.currentTarget.innerText = '🔒'
-    }
-  }
+function UsernameInput({register, error = undefined}){
   return (
     <>
-      <div className='flex w-full'>
+      <div className='flex mt-7'>
+        <label htmlFor='id' className='basis-2/5 mt-1'>
+          아이디
+        </label>
         <Input
-          ref={ref}
-          type='password'
-          placeholder='비밀번호'
-          onChange={(e) => {
-            const validated = validate(e.currentTarget.value)
-            setValid(validated)
-          }}
+          placeholder=''
+          label={'UserName'}
+          className='w-full'
+          {...register('username', {
+            required: { value: true, message: '아이디를 입력해주세요 ' },
+            minLength: {
+              value: 5,
+              message: '아이디는 5자 이상이여야합니다',
+            },
+            maxLength: {
+              value: 20,
+              message: '아이디는 20자 이하이여야합니다',
+            },
+          })}
         />
-        <Button onClick={changeMode}>🔒</Button>
       </div>
-      <div>
-        {valid.minimum || <div style={{ color: 'red' }}>비밀번호는 8자 이상이어야 합니다.</div>}
-        {valid.required || <div style={{ color: 'red' }}>비밀번호는 필수 입력 사항입니다.</div>}
+      <div className={clsx(error && 'error-text')}>
+        {error?.type === '_type_' && '_message_'}
+        {error?.message}
       </div>
     </>
   )
 }
 
-function UsernameInput({ validation: { ref, validate } }) {
+function PasswordInput({register, error = undefined}){
   return (
-    <div className='w-full'>
-      <Input placeholder='아이디' />
-    </div>
+    <>
+      <div>
+        <div className='flex mt-3 mb-5'>
+          <label htmlFor='password' className='basis-2/5 mt-1'>
+            비밀번호
+          </label>
+          <Input
+            type='password'
+            label={'password'}
+            className='w-full'
+            {...register('password', {
+              required: { value: true, message: '비밀번호를 입력해주세요' },
+              // 이곳에 비밀번호 틀렸을때 나오는 에러 메세지를 넣어주세요
+              // minLength: {
+              //   value: 5,
+              //   message: '비밀번호는 5자 이상이여아합니다',
+              // },
+            })}
+          />
+        </div>
+        <div className={clsx(error && 'error-text')}>
+          {error?.type === '_type_' && '_message_'}
+          {error?.message}
+        </div>
+      </div>
+    </>
   )
 }
 
+function onClickConfirm(data){
+  console.log(data)
+  // 로그인 로직을 작성해주세요
+}
+
 export default function LoginPage() {
-  const validation = {
-    id: { ref: useRef(null), validate: (input) => true },
-    password: {
-      ref: useRef(null),
-      validate: (input) => {
-        return {
-          minimum: input.length >= 8,
-          required: input.length > 0,
-        }
-      },
-    },
-  }
-
-  function login() {
-    const password = validation.password.ref.current?.value
-    const validated = validation.password.validate(password)
-
-    if (!(validated.minimum && validated.required)) {
-      alert(
-        `${!validated.minimum ? '비밀번호는 8자 이상이어야 합니다.' : ''} ${!validated.required ? '비밀번호는 필수 입력 사항입니다.' : ''}`,
-      )
-    }
-  }
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors },
+  } = useForm()
 
   return (
     <>
@@ -80,12 +89,13 @@ export default function LoginPage() {
       </div>
       <div className='login-page flex flex-col w-96 m-auto'>
         <img src='../src/assets/galaxy_image.jpg' alt='logo' className='w-full' />
-
-        <UsernameInput validation={validation.id} />
-        <PasswordInput validation={validation.password} />
-        <Button className='mt-3 w-full' onClick={login}>
-          로그인
-        </Button>
+        <form className="w-full max-w-lg mx-auto" onSubmit={handleSubmit(onClickConfirm)}>
+          <UsernameInput register={register} error={errors?.username} />
+          <PasswordInput register={register} error={errors?.password} />
+          <Button type="submit" className='mt-3 w-full'>
+            로그인
+          </Button>
+        </form>
 
         <div className='mt-3 text-center'>
           <a href='/register'>회원가입 | </a>
