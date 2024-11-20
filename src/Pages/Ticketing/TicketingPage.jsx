@@ -56,7 +56,7 @@ export default function TicketingPage() {
       <div className='content flex justify-between items-start'>
         <div>
           <InfoMain productData={productData} />
-          <Tabs defaultValue='performaceInfo'>
+          <Tabs className='pl-10' defaultValue='performaceInfo'>
             <TabsList>
               <TabsTrigger value='performaceInfo'>공연정보</TabsTrigger>
               <TabsTrigger value='review'>관람후기</TabsTrigger>
