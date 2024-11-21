@@ -1,12 +1,12 @@
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
 import { useForm } from 'react-hook-form'
 import clsx from 'clsx'
+import { Navigate, redirect, useNavigate } from 'react-router'
 
-
-function UsernameInput({register, error = undefined}){
+function UsernameInput({ register, error = undefined }) {
   return (
     <>
       <div className='flex mt-7'>
@@ -38,7 +38,7 @@ function UsernameInput({register, error = undefined}){
   )
 }
 
-function PasswordInput({register, error = undefined}){
+function PasswordInput({ register, error = undefined }) {
   return (
     <>
       <div>
@@ -69,18 +69,41 @@ function PasswordInput({register, error = undefined}){
   )
 }
 
-function onClickConfirm(data){
-  console.log(data)
-  // 로그인 로직을 작성해주세요
-}
-
 export default function LoginPage() {
+  const navigate = useNavigate()
   const {
     handleSubmit,
     register,
     watch,
     formState: { errors },
   } = useForm()
+
+  const onClickConfirm = (data) => {
+    const formData = new URLSearchParams(data)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData,
+    }
+    const response = fetch('http://localhost:8080/login', requestOptions)
+      .then((res) => {
+        if (res.ok) {
+          // 로그인 상태 저장 로직 필요 -> username
+          // context or redux
+
+          let jwtToken = res.headers.get('authorization')
+          localStorage.setItem('authorization', jwtToken)
+          navigate('/')
+        }
+        return res.json()
+      })
+      .then((response) => {
+        alert(response.message)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }
 
   return (
     <>
@@ -89,18 +112,22 @@ export default function LoginPage() {
       </div>
       <div className='login-page flex flex-col w-96 m-auto'>
         <img src='../src/assets/galaxy_image.jpg' alt='logo' className='w-full' />
-        <form className="w-full max-w-lg mx-auto" onSubmit={handleSubmit(onClickConfirm)}>
+        <form className='w-full max-w-lg mx-auto' onSubmit={handleSubmit(onClickConfirm)}>
           <UsernameInput register={register} error={errors?.username} />
           <PasswordInput register={register} error={errors?.password} />
-          <Button type="submit" className='mt-3 w-full'>
+          <Button type='submit' className='mt-3 w-full'>
             로그인
           </Button>
         </form>
 
         <div className='mt-3 text-center'>
           <a href='/register'>회원가입 | </a>
-          <a href='#' onClick={() => alert("준비중입니다")}>비밀번호 찾기 | </a>
-          <a href='#' onClick={() => alert("준비중입니다")}>아이디 찾기</a>
+          <a href='#' onClick={() => alert('준비중입니다')}>
+            비밀번호 찾기 |{' '}
+          </a>
+          <a href='#' onClick={() => alert('준비중입니다')}>
+            아이디 찾기
+          </a>
         </div>
 
         <div className='mt-10 flex text-center gap-10 justify-center pb-10'>

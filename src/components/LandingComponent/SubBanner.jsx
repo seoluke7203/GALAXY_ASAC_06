@@ -22,26 +22,22 @@ const SubBanner = ({ subBannerData }) => {
           className='max-w-7xl h-full box-border'
         >
           <CarouselContent className='w-full text-center'>
-            {subBannerData
-              // .filter((content) => genre.genre === content.genre)
-              .map((content) => (
-                <CarouselItem key={content.id} className='basis-1/6'>
-                  <Link className='flex flex-col' to={`${content.link}/${content.id}`}>
-                    <img
-                      src={content.src}
-                      alt='testImg'
-                      className='rounded-xl border  border-black border-opacity-10'
-                    />
-                    <ul className='pt-4 px-1 text-left text-base font-bold'>
-                      <li className='text-fuchsia-600'>10.02(수) 11:00</li>
-                      <li className='overflow-hidden text-ellipsis mt-1'>{content.title}</li>
-                      <li className='mt-1 text-xs text-gray-400 font-thin'>
-                        {content.content}테스트 입니다. 테스트 입니다. 테스트 입니다.{' '}
-                      </li>
-                    </ul>
-                  </Link>
-                </CarouselItem>
-              ))}
+            {subBannerData.map((content, index) => (
+              <CarouselItem key={index} className='basis-1/6'>
+                <Link className='flex flex-col' to={`/ticketing/${content.id}`}>
+                  <img
+                    src={content.productSrc}
+                    alt='poster'
+                    className='rounded-xl border  border-black border-opacity-10'
+                  />
+                  <ul className='pt-4 px-1 text-left text-base font-bold'>
+                    <li className='text-fuchsia-600'>{content.releaseDate}</li>
+                    <li className='overflow-hidden text-ellipsis mt-1'>{content.title}</li>
+                    <li className='mt-1 text-xs text-gray-400 font-thin'>{content.content}</li>
+                  </ul>
+                </Link>
+              </CarouselItem>
+            ))}
             <DummyComponent type='sub' neededAmount={amountNeedDummy} />
           </CarouselContent>
           <CarouselPrevious className='p-0' />
