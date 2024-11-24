@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { QRCodeCanvas } from 'qrcode.react'
 import { useState } from 'react'
+import { generatePdf } from '@/components/paymentComponents/downloadPdf'
+
 
 const PaymentCompleted = ({ ticketingData }) => {
   const productData = ticketingData.productData
@@ -12,12 +14,16 @@ const PaymentCompleted = ({ ticketingData }) => {
   const downloadQRCode = () => {
     const canvas = document.getElementById('qrcode')
     const pngUrl = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
-    let downloadLink = document.createElement('a')
-    downloadLink.href = pngUrl
-    downloadLink.download = 'qrcode.png'
-    document.body.appendChild(downloadLink)
-    downloadLink.click()
-    document.body.removeChild(downloadLink)
+    // let downloadLink = document.createElement('a')
+    // downloadLink.href = pngUrl
+    // downloadLink.download = 'qrcode.png'
+    // document.body.appendChild(downloadLink)
+    // downloadLink.click()
+    // document.body.removeChild(downloadLink)
+
+
+    // 여러명일시 .map을 통해 여러개의 pdf 생성하도록 하기
+    generatePdf(pngUrl, reservationID)
   }
 
   const settingQrcode = () => {
@@ -28,6 +34,8 @@ const PaymentCompleted = ({ ticketingData }) => {
   Object.entries(countUpdate).forEach(([key, value]) => {
     count += value
   })
+
+  const reservationID = Math.floor(Math.random() * 100000000)
 
   return (
     <div className='main' onLoad={settingQrcode}>
@@ -48,7 +56,7 @@ const PaymentCompleted = ({ ticketingData }) => {
 
           <div className='font-bold pl-10'> 예매 번호 </div>
           <div className='grid grid-rows-subgrid col-span-2 items-center text-xl font-black text-gray-500'>
-            {Math.floor(Math.random() * 100000000)}
+            { reservationID }
           </div>
 
           <div className='font-bold pl-10'> 공연 일시 </div>
