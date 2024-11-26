@@ -55,7 +55,7 @@ export default function TicketingPage() {
 
   return (
     <div className='main'>
-      <div className='content flex justify-between items-start'>
+      <div className='content w-full flex justify-between items-start'>
         <div>
           <InfoMain productData={productData} />
           <Tabs className='pl-10' defaultValue='performaceInfo'>
@@ -84,7 +84,7 @@ export default function TicketingPage() {
 }
 
 const PosterInfo = ({ src }) => (
-  <div className='posterinfo'>
-    <img className='w-[750px]' src={src} />
+  <div className=''>
+    <img className='w-full' src={src} />
   </div>
 )

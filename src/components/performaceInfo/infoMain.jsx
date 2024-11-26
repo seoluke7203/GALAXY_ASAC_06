@@ -5,7 +5,7 @@ const infoMain = ({ productData }) => {
   
 
   return (
-    <div className='container mx-auto pb-10 pl-10'>
+    <div className='mx-auto w-full pb-10 pl-10'>
       <h2 className='text-2xl font-bold text-left'>{productData?.title}</h2>
       <h3 className='text-gray-500 text-left'>{productData?.rank}</h3>
       <div className='flex mt-8 space-x-8'>

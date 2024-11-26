@@ -3,8 +3,6 @@ import { addHeader, addImage, addReservationID} from '@/components/ui/pdfTemplat
 import galaxy_logo from '@/assets/galaxy_logo.jpg'
 import galaxy_image from '@/assets/galaxy_image.jpg'
 
-
-
 export const generatePdf = (qrCode, reservId) => {
   try {
     const pdf = new jsPDF();
