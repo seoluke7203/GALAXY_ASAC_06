@@ -1,8 +1,7 @@
-import useEventInfo from '@/custom/useEventInfo'
 import { useState } from 'react'
 
 const infoMain = ({ productData }) => {
-  const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo } = useEventInfo()
+  // const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo } = useEventInfo()
   
 
   return (
@@ -20,7 +19,7 @@ const infoMain = ({ productData }) => {
 const Poster = ({ src }) => (
   <div className='poster'>
     {/* {console.log(src)} */}
-    <img src={src} alt='뮤지컬 포스터' className='w-full h-auto rounded-md shadow-lg' />
+    <img src={src} alt='뮤지컬 포스터' className='w-54 h-72 rounded-md shadow-lg' />
   </div>
 )
 
