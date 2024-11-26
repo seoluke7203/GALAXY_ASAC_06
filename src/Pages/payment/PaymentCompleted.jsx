@@ -28,6 +28,7 @@ const PaymentCompleted = ({ ticketingData }) => {
   Object.entries(countUpdate).forEach(([key, value]) => {
     count += value
   })
+  console.log(ticketingData)
 
   return (
     <div className='main' onLoad={settingQrcode}>
@@ -43,7 +44,7 @@ const PaymentCompleted = ({ ticketingData }) => {
 
         <div className='grid grid-cols-[1fr_180px_1fr_1fr] grid-flow-row text-start items-center'>
           <div className='grid grid-cols-subgrid row-span-6 bg-slate-400'>
-            <img className='p-2 w-64' src='../src/assets/musicalTestImg.gif' />
+            <img className='h-72 w-54' src={ticketingData.productData.posterSrc} />
           </div>
 
           <div className='font-bold pl-10'> 예매 번호 </div>
