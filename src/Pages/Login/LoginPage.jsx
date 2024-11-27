@@ -5,6 +5,7 @@ import LogoZone from '@/components/Layout/LogoZone'
 import { useForm } from 'react-hook-form'
 import clsx from 'clsx'
 import { Navigate, redirect, useNavigate } from 'react-router'
+import SocialLoginZone from '@/components/Layout/SocialLoginZone'
 import { IsLoginContext } from '@/context/IsLoginContext'
 
 function UsernameInput({ register, error = undefined }) {
@@ -133,18 +134,7 @@ export default function LoginPage() {
             아이디 찾기
           </a>
         </div>
-
-        <div className='mt-10 flex text-center gap-10 justify-center pb-10'>
-          <a href='#'>
-            <img src='../src/assets/btnW_icon_circle.png' alt='naver_login' className='w-20' />
-          </a>
-          <a href='#'>
-            <img src='../src/assets/Kakao.png' alt='naver_login' className='w-20' />
-          </a>
-          <a href='#'>
-            <img src='../src/assets/Google.png' alt='naver_login' className='w-20' />
-          </a>
-        </div>
+        <SocialLoginZone />
       </div>
     </>
   )

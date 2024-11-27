@@ -1,12 +1,11 @@
-import useEventInfo from '@/custom/useEventInfo'
 import { useState } from 'react'
 
 const infoMain = ({ productData }) => {
-  const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo } = useEventInfo()
+  // const { eventTitle, eventRank, posterSrc, eventDetails, ticketInfo } = useEventInfo()
   
 
   return (
-    <div className='container mx-auto pb-10 pl-10'>
+    <div className='mx-auto w-full pb-10 pl-10'>
       <h2 className='text-2xl font-bold text-left'>{productData?.title}</h2>
       <h3 className='text-gray-500 text-left'>{productData?.rank}</h3>
       <div className='flex mt-8 space-x-8'>
@@ -20,7 +19,7 @@ const infoMain = ({ productData }) => {
 const Poster = ({ src }) => (
   <div className='poster'>
     {/* {console.log(src)} */}
-    <img src={src} alt='뮤지컬 포스터' className='w-full h-auto rounded-md shadow-lg' />
+    <img src={src} alt='뮤지컬 포스터' className='w-54 h-72 rounded-md shadow-lg' />
   </div>
 )
 

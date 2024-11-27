@@ -1,4 +1,5 @@
 import DummyComponent from '@/components/LandingComponent/DummyComponent'
+
 import {
   Carousel,
   CarouselContent,
@@ -28,7 +29,7 @@ const SubBanner = ({ subBannerData }) => {
                   <img
                     src={content.productSrc}
                     alt='poster'
-                    className='rounded-xl border  border-black border-opacity-10'
+                    className='rounded-xl border  border-black border-opacity-10 h-56 w-44'
                   />
                   <ul className='pt-4 px-1 text-left text-base font-bold'>
                     <li className='text-fuchsia-600'>{content.releaseDate}</li>

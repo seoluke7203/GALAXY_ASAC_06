@@ -8,12 +8,13 @@ export default function paymentPage() {
   // const { countUpdate } = location.state || { countUpdate: {} }
   const { ticketingData } = location.state
 
-  console.log(location.state)
+  console.log(ticketingData)
+    // console.log(location.state)
 
   return (
     <>
       <div className='flex'>
-        <PaymentInfo />
+        <PaymentInfo ticketingData={ticketingData}/>
         <PaymentConfirmUI ticketingData={ticketingData} />
       </div>
     </>

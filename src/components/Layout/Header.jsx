@@ -2,11 +2,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
 import SearchZone from '@/components/Layout/SearchZone'
+import PrepAlert from '@/components/ui/prepAlert'
 import { IsLoginContext, useIsLoginState } from '@/context/IsLoginContext'
 
 const UserNavi = () => {
   const isLogin = useIsLoginState()
   const { setIsLogin } = useContext(IsLoginContext)
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
 
   const logout = () => {
     if (confirm('로그아웃 하시겠습니까?')) {
@@ -27,7 +38,11 @@ const UserNavi = () => {
             </Link>
           </li>
           <li>내정보</li>
-          <li>마이페이지</li>
+          <li>
+            <div className='cursor-pointer' onClick={openModal}>
+              마이페이지
+            </div>
+          </li>
         </ul>
       ) : (
         <ul className='flex flex-row items-center h-10 gap-5 pr-4 rounded-md whitespace-nowrap list-none'>
@@ -40,10 +55,14 @@ const UserNavi = () => {
           </li>
 
           <li>
-            <Link to='/'>마이페이지</Link>
+            <div className='cursor-pointer' onClick={openModal}>
+              마이페이지
+            </div>
           </li>
         </ul>
       )}
+
+      {isModalOpen && <PrepAlert message='아직 준비중입니다!' closeModal={closeModal} />}
     </div>
   )
 }

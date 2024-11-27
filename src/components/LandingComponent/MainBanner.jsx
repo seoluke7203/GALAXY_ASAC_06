@@ -35,7 +35,7 @@ const MainBanner = ({ mainBannerData }) => {
                   <img
                     src={content.productSrc}
                     alt='testImg'
-                    className='rounded-xl border  border-black border-opacity-10'
+                    className='rounded-xl border  border-black border-opacity-10 h-80 w-56'
                   />
                   <ul className='flex flex-col items-start pt-5 px-1'>
                     <li className='text-lg font-bold'>{content.title}</li>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
-export default function PaymentConfirmUI({ ticketingData }) {
+  export default function PaymentConfirmUI({ ticketingData }) {
   const navigate = useNavigate()
   const countUpdate = ticketingData.countUpdate
   const totalPrice = ticketingData.totalPrice
@@ -34,7 +34,15 @@ export default function PaymentConfirmUI({ ticketingData }) {
     }
   }
 
-  console.log(ticketingData)
+  // console.log(typeof(ticketingData.schedule))
+  // console.log(ticketingData.schedule2) // string타입
+  // console.log(ticketingData.schedule.getFullYear())
+  // console.log(ticketingData.schedule.getMonth() + 1)
+  // console.log(ticketingData.schedule.getDate())
+  // console.log(ticketingData.schedule.getDay()) // 요일 0(sun) ~ 6(sat)
+  // console.log(ticketingData.schedule.getHours())
+
+
 
   const submitHandler = () => {
     // 결제 요청 api 호출

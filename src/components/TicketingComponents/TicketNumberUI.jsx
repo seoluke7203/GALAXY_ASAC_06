@@ -53,7 +53,7 @@ const TicketNumberUI = ({ ticketingData }) => {
 
     // if 날짜 o && 좌석 선택 유무?
 
-    if (ticketingData.productData.type === '1') {
+    if (ticketingData.productData.productType === 'SCHEDULE') {
       nav = '/seatSelect'
     }
 

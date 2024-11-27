@@ -3,7 +3,6 @@ import { QRCodeCanvas } from 'qrcode.react'
 import { useState } from 'react'
 import { generatePdf } from '@/components/paymentComponents/downloadPdf'
 
-
 const PaymentCompleted = ({ ticketingData }) => {
   const productData = ticketingData.productData
   const countUpdate = ticketingData.countUpdate
@@ -21,7 +20,6 @@ const PaymentCompleted = ({ ticketingData }) => {
     // downloadLink.click()
     // document.body.removeChild(downloadLink)
 
-
     // 여러명일시 .map을 통해 여러개의 pdf 생성하도록 하기
     generatePdf(pngUrl, reservationID)
   }
@@ -34,6 +32,7 @@ const PaymentCompleted = ({ ticketingData }) => {
   Object.entries(countUpdate).forEach(([key, value]) => {
     count += value
   })
+  console.log(ticketingData)
 
   const reservationID = Math.floor(Math.random() * 100000000)
 
@@ -51,12 +50,12 @@ const PaymentCompleted = ({ ticketingData }) => {
 
         <div className='grid grid-cols-[1fr_180px_1fr_1fr] grid-flow-row text-start items-center'>
           <div className='grid grid-cols-subgrid row-span-6 bg-slate-400'>
-            <img className='p-2 w-64' src='../src/assets/musicalTestImg.gif' />
+            <img className='h-72 w-54' src={ticketingData.productData.posterSrc} />
           </div>
 
           <div className='font-bold pl-10'> 예매 번호 </div>
           <div className='grid grid-rows-subgrid col-span-2 items-center text-xl font-black text-gray-500'>
-            { reservationID }
+            {reservationID}
           </div>
 
           <div className='font-bold pl-10'> 공연 일시 </div>

@@ -32,12 +32,13 @@ export default function TicketingPage() {
     type: '1',
     src: '../src/assets/images/musicalTestImg.gif',
   })
-  const [ticketType, setTicketType] = useState(productData.type)
+  const [ticketType, setTicketType] = useState()
 
   // useEffect -> param.productId -> InfoMain, 관람 후기 데이터 호출
   // setProductData
 
   // setReview --pending
+
 
   useEffect(() => {
     const requestOptions = {
@@ -48,12 +49,13 @@ export default function TicketingPage() {
       .then((res) => res.json())
       .then((result) => {
         setProductData(result.data)
+        setTicketType(result.data.productType)
       })
   }, [])
 
   return (
     <div className='main'>
-      <div className='content flex justify-between items-start'>
+      <div className='content w-full flex justify-between items-start'>
         <div>
           <InfoMain productData={productData} />
           <Tabs className='pl-10' defaultValue='performaceInfo'>
@@ -70,10 +72,10 @@ export default function TicketingPage() {
           </Tabs>
         </div>
         <div className='mx-10 sticky top-48'>
-          {ticketType === '0' ? (
-            <NonDateSelectUI productData={productData} />
-          ) : (
+          {ticketType === 'SCHEDULE' ? (
             <DateSelectUI productData={productData} />
+          ) : (
+            <NonDateSelectUI productData={productData} />
           )}
         </div>
       </div>
@@ -82,7 +84,7 @@ export default function TicketingPage() {
 }
 
 const PosterInfo = ({ src }) => (
-  <div className='posterinfo'>
-    <img className='w-screen' src={src} />
+  <div className=''>
+    <img className='w-full' src={src} />
   </div>
 )
