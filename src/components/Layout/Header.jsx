@@ -1,15 +1,31 @@
-import { Link } from 'react-router-dom'
-import { Input } from '@/components/ui/input'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
 import SearchZone from '@/components/Layout/SearchZone'
+import { IsLoginContext, useIsLoginState } from '@/context/IsLoginContext'
 
-const UserNavi = ({ isLogin }) => {
+const UserNavi = () => {
+  const isLogin = useIsLoginState()
+  const { setIsLogin } = useContext(IsLoginContext)
+
+  const logout = () => {
+    if (confirm('로그아웃 하시겠습니까?')) {
+      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('id')
+
+      setIsLogin(false)
+    }
+  }
+
   return (
     <div className='flex flex-row justify-end items-center gap-5 h-4 rounded-md flex-1 text-nowrap'>
       {isLogin ? (
         <ul className='flex flex-row items-center h-10 gap-5 pr-4 rounded-md whitespace-nowrap list-none'>
-          <li>로그아웃</li>
+          <li>
+            <Link to='/' onClick={logout}>
+              로그아웃
+            </Link>
+          </li>
           <li>내정보</li>
           <li>마이페이지</li>
         </ul>
@@ -80,7 +96,6 @@ const NaviZone = ({ children }) => {
 }
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false)
   // const [genre, setGenre] = useState('뮤지컬')
 
   return (
@@ -89,7 +104,7 @@ const Header = () => {
       <NaviZone>
         <LogoZone />
         <SearchZone />
-        <UserNavi isLogin={isLogin} />
+        <UserNavi />
       </NaviZone>
 
       {/* 장르 영역 */}

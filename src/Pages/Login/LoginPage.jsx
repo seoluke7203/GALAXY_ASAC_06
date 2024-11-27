@@ -1,10 +1,11 @@
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
 import { useForm } from 'react-hook-form'
 import clsx from 'clsx'
 import { Navigate, redirect, useNavigate } from 'react-router'
+import { IsLoginContext } from '@/context/IsLoginContext'
 
 function UsernameInput({ register, error = undefined }) {
   return (
@@ -70,6 +71,9 @@ function PasswordInput({ register, error = undefined }) {
 }
 
 export default function LoginPage() {
+  const { setIsLogin } = useContext(IsLoginContext)
+
+  console.log(setIsLogin)
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -89,19 +93,19 @@ export default function LoginPage() {
       .then((res) => {
         if (res.ok) {
           // 로그인 상태 저장 로직 필요 -> username
-          // context or redux
-
           let jwtToken = res.headers.get('authorization')
-          localStorage.setItem('authorization', jwtToken)
+          // localStorage.setItem('authorization', jwtToken)
+
+          sessionStorage.setItem('id', data.username)
+          sessionStorage.setItem('token', jwtToken)
+          setIsLogin(true)
+
           navigate('/')
         }
         return res.json()
       })
       .then((response) => {
         alert(response.message)
-      })
-      .catch((error) => {
-        alert(error)
       })
   }
 
