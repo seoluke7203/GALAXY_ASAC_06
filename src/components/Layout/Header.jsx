@@ -3,15 +3,27 @@ import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
 import SearchZone from '@/components/Layout/SearchZone'
+import PrepAlert from '@/components/ui/prepAlert'
+
 
 const UserNavi = ({ isLogin }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className='flex flex-row justify-end items-center gap-5 h-4 rounded-md flex-1 text-nowrap'>
       {isLogin ? (
         <ul className='flex flex-row items-center h-10 gap-5 pr-4 rounded-md whitespace-nowrap list-none'>
           <li>로그아웃</li>
           <li>내정보</li>
-          <li>마이페이지</li>
+          <li><div className='cursor-pointer' onClick={openModal}>마이페이지</div></li>
         </ul>
       ) : (
         <ul className='flex flex-row items-center h-10 gap-5 pr-4 rounded-md whitespace-nowrap list-none'>
@@ -24,11 +36,14 @@ const UserNavi = ({ isLogin }) => {
           </li>
 
           <li>
-            <Link to='/'>마이페이지</Link>
+            <div className='cursor-pointer' onClick={openModal}>마이페이지</div>
           </li>
         </ul>
       )}
+
+      {isModalOpen && <PrepAlert message="아직 준비중입니다!" closeModal={closeModal} />}
     </div>
+
   )
 }
 
