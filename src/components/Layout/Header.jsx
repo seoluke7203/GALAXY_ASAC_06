@@ -7,6 +7,7 @@ import { IsLoginContext, useIsLoginState } from '@/context/IsLoginContext'
 
 const UserNavi = () => {
   const isLogin = useIsLoginState()
+  const navigate = useNavigate()
   const { setIsLogin } = useContext(IsLoginContext)
 
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -21,13 +22,33 @@ const UserNavi = () => {
 
   const logout = () => {
     if (confirm('로그아웃 하시겠습니까?')) {
-      sessionStorage.removeItem('token')
-      sessionStorage.removeItem('id')
+      const requestOptions = {
+        method: 'POST',
+        credentials: 'include',
+      }
+      const response = fetch('http://localhost:8080/logout', requestOptions)
+        .then((res) => {
+          if (!res.ok) {
+            return res.json().then((errorResponse) => {
+              throw new Error(errorResponse.message)
+            })
+          } else {
+            sessionStorage.removeItem('token')
+            sessionStorage.removeItem('id')
 
-      setIsLogin(false)
+            setIsLogin(false)
+
+            navigate('/')
+          }
+          return res.json()
+        })
+        .then((response) => {})
+        .catch((error) => {
+          console.log(error)
+          alert(error.message)
+        })
     }
   }
-
   return (
     <div className='flex flex-row justify-end items-center gap-5 h-4 rounded-md flex-1 text-nowrap'>
       {isLogin ? (

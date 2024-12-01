@@ -1,8 +1,11 @@
 import TicketNumberSelector from '@/components/TicketingComponents/TicketNumberSelector'
+import { useIsLoginState } from '@/context/IsLoginContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const TicketNumberUI = ({ ticketingData }) => {
+  const isLogin = useIsLoginState()
+
   const ADULT_PRICE = 130000
   const ELDERLY_PRICE = 120000
   const YOUTH_PRICE = 120000
@@ -37,21 +40,18 @@ const TicketNumberUI = ({ ticketingData }) => {
   }
 
   const handleNavigatetoPayment = () => {
+    if (!isLogin) {
+      navigate('/login')
+      return
+    }
+
     const Total = TotalPrice()
-    // const ticketingData = {
-    //   productData: productData,
-    //   countUpdate: countUpdate,
-    //   selectedDate: selectedDate,
-    //   selectedTime: selectedTime,
-    //   totalPrice: Total,
-    // }
+
     ticketingData.countUpdate = countUpdate
     ticketingData.totalPrice = Total
     ticketingData.countUpdate = countUpdate
 
     let nav = '/payment' // 날짜 x -> 바로 결제 페이지
-
-    // if 날짜 o && 좌석 선택 유무?
 
     if (ticketingData.productData.productType === 'SCHEDULE') {
       nav = '/seatSelect'

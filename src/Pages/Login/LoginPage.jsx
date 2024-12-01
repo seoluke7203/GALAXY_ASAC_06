@@ -73,8 +73,6 @@ function PasswordInput({ register, error = undefined }) {
 
 export default function LoginPage() {
   const { setIsLogin } = useContext(IsLoginContext)
-
-  console.log(setIsLogin)
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -88,12 +86,17 @@ export default function LoginPage() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      credentials: 'include',
       body: formData,
     }
+
     const response = fetch('http://localhost:8080/login', requestOptions)
       .then((res) => {
-        if (res.ok) {
-          // 로그인 상태 저장 로직 필요 -> username
+        if (!res.ok) {
+          return res.json().then((errorResponse) => {
+            throw new Error(errorResponse.message)
+          })
+        } else {
           let jwtToken = res.headers.get('authorization')
           // localStorage.setItem('authorization', jwtToken)
 
@@ -105,8 +108,9 @@ export default function LoginPage() {
         }
         return res.json()
       })
-      .then((response) => {
-        alert(response.message)
+      .then((response) => {})
+      .catch((error) => {
+        alert(error.message)
       })
   }
 
