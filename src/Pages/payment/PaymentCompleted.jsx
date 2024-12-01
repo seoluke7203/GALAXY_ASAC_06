@@ -3,7 +3,6 @@ import { QRCodeCanvas } from 'qrcode.react'
 import { useState } from 'react'
 import { generatePdf } from '@/components/paymentComponents/downloadPdf'
 
-
 const PaymentCompleted = ({ ticketingData }) => {
   const productData = ticketingData.productData
   const countUpdate = ticketingData.countUpdate
@@ -20,7 +19,6 @@ const PaymentCompleted = ({ ticketingData }) => {
     // document.body.appendChild(downloadLink)
     // downloadLink.click()
     // document.body.removeChild(downloadLink)
-
 
     // 여러명일시 .map을 통해 여러개의 pdf 생성하도록 하기
     generatePdf(pngUrl, reservationID)
@@ -57,7 +55,7 @@ const PaymentCompleted = ({ ticketingData }) => {
 
           <div className='font-bold pl-10'> 예매 번호 </div>
           <div className='grid grid-rows-subgrid col-span-2 items-center text-xl font-black text-gray-500'>
-            { reservationID }
+            {reservationID}
           </div>
 
           <div className='font-bold pl-10'> 공연 일시 </div>

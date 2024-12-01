@@ -8,6 +8,7 @@ import SeatSelect from '@/components/TicketingComponents/SeatSelect'
 import RegisterPage from '@/Pages/Register/RegisterPage'
 import PaymentPage from '@/Pages/payment/PaymentPage'
 import PaymentCompeletedPage from '@/Pages/payment/PaymentCompleted'
+import IsLoginProvider from '@/context/IsLoginContext'
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className='App'>
-      <RouterProvider router={router} />
+      <IsLoginProvider>
+        <RouterProvider router={router} />
+      </IsLoginProvider>
     </div>
   )
 }

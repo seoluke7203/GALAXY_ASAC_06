@@ -1,29 +1,69 @@
-import { Link } from 'react-router-dom'
-import { Input } from '@/components/ui/input'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
 import SearchZone from '@/components/Layout/SearchZone'
 import PrepAlert from '@/components/ui/prepAlert'
+import { IsLoginContext, useIsLoginState } from '@/context/IsLoginContext'
 
+const UserNavi = () => {
+  const isLogin = useIsLoginState()
+  const navigate = useNavigate()
+  const { setIsLogin } = useContext(IsLoginContext)
 
-const UserNavi = ({ isLogin }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const openModal = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   const closeModal = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
+  const logout = () => {
+    if (confirm('로그아웃 하시겠습니까?')) {
+      const requestOptions = {
+        method: 'POST',
+        credentials: 'include',
+      }
+      const response = fetch('http://localhost:8080/logout', requestOptions)
+        .then((res) => {
+          if (!res.ok) {
+            return res.json().then((errorResponse) => {
+              throw new Error(errorResponse.message)
+            })
+          } else {
+            sessionStorage.removeItem('token')
+            sessionStorage.removeItem('id')
+
+            setIsLogin(false)
+
+            navigate('/')
+          }
+          return res.json()
+        })
+        .then((response) => {})
+        .catch((error) => {
+          console.log(error)
+          alert(error.message)
+        })
+    }
+  }
   return (
     <div className='flex flex-row justify-end items-center gap-5 h-4 rounded-md flex-1 text-nowrap'>
       {isLogin ? (
         <ul className='flex flex-row items-center h-10 gap-5 pr-4 rounded-md whitespace-nowrap list-none'>
-          <li>로그아웃</li>
+          <li>
+            <Link to='/' onClick={logout}>
+              로그아웃
+            </Link>
+          </li>
           <li>내정보</li>
-          <li><div className='cursor-pointer' onClick={openModal}>마이페이지</div></li>
+          <li>
+            <div className='cursor-pointer' onClick={openModal}>
+              마이페이지
+            </div>
+          </li>
         </ul>
       ) : (
         <ul className='flex flex-row items-center h-10 gap-5 pr-4 rounded-md whitespace-nowrap list-none'>
@@ -36,14 +76,15 @@ const UserNavi = ({ isLogin }) => {
           </li>
 
           <li>
-            <div className='cursor-pointer' onClick={openModal}>마이페이지</div>
+            <div className='cursor-pointer' onClick={openModal}>
+              마이페이지
+            </div>
           </li>
         </ul>
       )}
 
-      {isModalOpen && <PrepAlert message="아직 준비중입니다!" closeModal={closeModal} />}
+      {isModalOpen && <PrepAlert message='아직 준비중입니다!' closeModal={closeModal} />}
     </div>
-
   )
 }
 
@@ -95,7 +136,6 @@ const NaviZone = ({ children }) => {
 }
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false)
   // const [genre, setGenre] = useState('뮤지컬')
 
   return (
@@ -104,7 +144,7 @@ const Header = () => {
       <NaviZone>
         <LogoZone />
         <SearchZone />
-        <UserNavi isLogin={isLogin} />
+        <UserNavi />
       </NaviZone>
 
       {/* 장르 영역 */}

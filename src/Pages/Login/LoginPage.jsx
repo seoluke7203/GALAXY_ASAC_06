@@ -1,11 +1,12 @@
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import LogoZone from '@/components/Layout/LogoZone'
 import { useForm } from 'react-hook-form'
 import clsx from 'clsx'
 import { Navigate, redirect, useNavigate } from 'react-router'
 import SocialLoginZone from '@/components/Layout/SocialLoginZone'
+import { IsLoginContext } from '@/context/IsLoginContext'
 
 function UsernameInput({ register, error = undefined }) {
   return (
@@ -71,6 +72,7 @@ function PasswordInput({ register, error = undefined }) {
 }
 
 export default function LoginPage() {
+  const { setIsLogin } = useContext(IsLoginContext)
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -84,25 +86,31 @@ export default function LoginPage() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      credentials: 'include',
       body: formData,
     }
+
     const response = fetch('http://localhost:8080/login', requestOptions)
       .then((res) => {
-        if (res.ok) {
-          // 로그인 상태 저장 로직 필요 -> username
-          // context or redux
-
+        if (!res.ok) {
+          return res.json().then((errorResponse) => {
+            throw new Error(errorResponse.message)
+          })
+        } else {
           let jwtToken = res.headers.get('authorization')
-          localStorage.setItem('authorization', jwtToken)
+          // localStorage.setItem('authorization', jwtToken)
+
+          sessionStorage.setItem('id', data.username)
+          sessionStorage.setItem('token', jwtToken)
+          setIsLogin(true)
+
           navigate('/')
         }
         return res.json()
       })
-      .then((response) => {
-        alert(response.message)
-      })
+      .then((response) => {})
       .catch((error) => {
-        alert(error)
+        alert(error.message)
       })
   }
 
@@ -130,7 +138,7 @@ export default function LoginPage() {
             아이디 찾기
           </a>
         </div>
-        <SocialLoginZone />        
+        <SocialLoginZone />
       </div>
     </>
   )
