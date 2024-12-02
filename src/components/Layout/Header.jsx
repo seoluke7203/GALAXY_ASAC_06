@@ -4,6 +4,7 @@ import LogoZone from '@/components/Layout/LogoZone'
 import SearchZone from '@/components/Layout/SearchZone'
 import PrepAlert from '@/components/ui/prepAlert'
 import { IsLoginContext, useIsLoginState } from '@/context/IsLoginContext'
+import { authFetch } from '@/lib/utils'
 
 const UserNavi = () => {
   const isLogin = useIsLoginState()
@@ -49,6 +50,7 @@ const UserNavi = () => {
         })
     }
   }
+
   return (
     <div className='flex flex-row justify-end items-center gap-5 h-4 rounded-md flex-1 text-nowrap'>
       {isLogin ? (
