@@ -19,3 +19,25 @@
 - ~~`npm run format`을 통해 eslint를 사용할 수 있다. 아직까지 저장 시 자동 바꿈을 설정하지 못해 해결할 예정이다.~~ 해결완료
 
   
+```
+├─assets
+│  └─images
+│      ├─events
+│      ├─posters
+│      └─postersDetail
+├─components
+│  ├─LandingComponent
+│  ├─Layout
+│  ├─paymentComponents
+│  ├─performaceInfo
+│  ├─TicketingComponents
+│  └─ui
+├─context
+├─lib
+└─Pages
+    ├─Landing
+    ├─Login
+    ├─payment
+    ├─Register
+    └─Ticketing
+```
