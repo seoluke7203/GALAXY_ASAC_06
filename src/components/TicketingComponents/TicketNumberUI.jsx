@@ -41,6 +41,7 @@ const TicketNumberUI = ({ ticketingData }) => {
 
   const handleNavigatetoPayment = () => {
     if (!isLogin) {
+      alert('로그인이 필요합니다.\n로그인 페이지로 이동합니다.')
       navigate('/login')
       return
     }
