@@ -51,6 +51,19 @@ const UserNavi = () => {
     }
   }
 
+  async function test() {
+    const option = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application.json',
+        Authorization: sessionStorage.getItem('token'),
+      },
+      credentials: 'include',
+    }
+    const response = await authFetch('http://localhost:8080/api/products/test', option)
+    console.log('test response : ', response)
+  }
+
   return (
     <div className='flex flex-row justify-end items-center gap-5 h-4 rounded-md flex-1 text-nowrap'>
       {isLogin ? (
@@ -62,9 +75,12 @@ const UserNavi = () => {
           </li>
           <li>내정보</li>
           <li>
-            <div className='cursor-pointer' onClick={openModal}>
+            <div className='cursor-pointer' onClick={test}>
               마이페이지
             </div>
+            {/* <div className='cursor-pointer' onClick={openModal}>
+              마이페이지
+            </div> */}
           </li>
         </ul>
       ) : (
@@ -78,9 +94,12 @@ const UserNavi = () => {
           </li>
 
           <li>
-            <div className='cursor-pointer' onClick={openModal}>
+            <div className='cursor-pointer' onClick={test}>
               마이페이지
             </div>
+            {/* <div className='cursor-pointer' onClick={openModal}>
+              마이페이지
+            </div> */}
           </li>
         </ul>
       )}

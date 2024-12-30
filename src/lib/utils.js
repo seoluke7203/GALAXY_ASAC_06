@@ -34,18 +34,10 @@ export async function authFetch(url, option) {
       window.location.href = '/login'
     }
   }
-  return response
-}
 
-async function test() {
-  const option = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application.json',
-      Authorization: sessionStorage.getItem('token'),
-    },
-    credentials: 'include',
+  if (response.status === 400) {
+    sessionStorage.clear()
+    window.location.href = '/login'
   }
-  const response = await authFetch('http://localhost:8080/api/products/test', option)
-  console.log('test response : ', response)
+  return response
 }

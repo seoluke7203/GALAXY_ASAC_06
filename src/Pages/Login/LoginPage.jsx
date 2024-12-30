@@ -97,18 +97,19 @@ export default function LoginPage() {
             throw new Error(errorResponse.message)
           })
         } else {
-          let jwtToken = res.headers.get('authorization')
+          const jwtToken = res.headers.get('authorization')
           // localStorage.setItem('authorization', jwtToken)
 
-          sessionStorage.setItem('id', data.username)
           sessionStorage.setItem('token', jwtToken)
-          setIsLogin(true)
-
-          navigate('/')
         }
         return res.json()
       })
-      .then((response) => {})
+      .then((id) => {
+        sessionStorage.setItem('id', id)
+        setIsLogin(true)
+
+        navigate('/')
+      })
       .catch((error) => {
         alert(error.message)
       })
